@@ -18,6 +18,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { cn } from "@/lib/utils"
+import p1Wide from "../public/assets/p1_wide.png"
 
 export default function LoginPage() {
   const router = useRouter()
@@ -42,7 +43,7 @@ export default function LoginPage() {
       {/* Left Side - Image */}
       <div className="relative hidden w-full lg:block lg:w-1/2 bg-neutral-100 h-full">
         <Image
-          src="/assets/p1_wide.png"
+          src={p1Wide}
           alt="Peruri Building"
           fill
           className="object-cover grayscale"
