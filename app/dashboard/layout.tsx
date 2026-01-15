@@ -117,7 +117,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             <div className="flex flex-1 relative">
                 {/* Sidebar */}
                 <aside className={cn(
-                    "absolute lg:static top-0 left-0 z-40 h-full w-56 bg-white border-r transform transition-transform duration-200 ease-in-out lg:translate-x-0 flex flex-col",
+                    "absolute lg:sticky lg:top-10 lg:h-[calc(100vh-2.5rem)] left-0 z-40 h-full w-56 bg-white border-r transform transition-transform duration-200 ease-in-out lg:translate-x-0 flex flex-col",
                     isSidebarOpen ? "translate-x-0" : "-translate-x-full"
                 )}>
                     {/* Mobile Close Button */}
