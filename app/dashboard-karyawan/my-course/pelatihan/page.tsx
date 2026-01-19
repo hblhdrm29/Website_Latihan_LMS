@@ -1,9 +1,10 @@
 "use client"
 
+import { Suspense } from "react"
 import { useSearchParams } from "next/navigation"
 import { HighTeamPerformance } from "./high-team-performance"
 
-export default function CourseProgressPage() {
+function CourseProgressContent() {
     const searchParams = useSearchParams()
 
     // Future implementation:
@@ -11,4 +12,12 @@ export default function CourseProgressPage() {
     // if (courseId === "other-course") return <OtherCourseComponent />
 
     return <HighTeamPerformance />
+}
+
+export default function CourseProgressPage() {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <CourseProgressContent />
+        </Suspense>
+    )
 }
