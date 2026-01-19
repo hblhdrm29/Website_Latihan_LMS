@@ -25,12 +25,7 @@ const SECTIONS = [
                 date: "16 - 18 Agustus 2024",
                 image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=500"
             },
-            {
-                title: "MT-Batch II",
-                category: "Pelatihan Produksi",
-                date: "01 - 15 July 2024",
-                image: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&q=80&w=500"
-            }
+
         ]
     },
     {
@@ -151,11 +146,11 @@ export default function ClassPage() {
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {section.courses.map((course, cIdx) => (
                                 course.title === "MT-Batch II" ? (
-                                    <Link key={cIdx} href="/dashboard/class/pelatihan" className="block h-full">
+                                    <Link key={cIdx} href="/dashboard-onboarding/class/daftar-pelatihan" className="block h-full">
                                         <CatalogCard course={course} />
                                     </Link>
                                 ) : course.title === "MT-Batch III" ? (
-                                    <Link key={cIdx} href="/dashboard/class/mt-batch-iii" className="block h-full">
+                                    <Link key={cIdx} href="/dashboard-onboarding/class/daftar-pelatihan?batch=mt-batch-iii" className="block h-full">
                                         <CatalogCard course={course} />
                                     </Link>
                                 ) : (

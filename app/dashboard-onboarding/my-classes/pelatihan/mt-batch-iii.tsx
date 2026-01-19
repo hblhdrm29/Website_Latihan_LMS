@@ -25,8 +25,7 @@ interface Step {
     content?: StepContent[] | null
 }
 
-export default function MyClassesDetailPage() {
-    // Mock data based on the "MT-Batch II" reference
+export function MtBatchThree() {
     const steps: Step[] = [
         {
             title: "Kick Off (19 Agustus 2024)",
@@ -82,8 +81,12 @@ export default function MyClassesDetailPage() {
         }
     ]
 
-    // State to track distinct expanded steps by index.
-    // Initialize with active or completed steps expanded by default.
+    const title = "MT- Batch III"
+    const statusLabel = "On Progress"
+    const statusColor = "bg-emerald-100 text-emerald-600 hover:bg-emerald-100"
+    const progressLabel = "87.5% Complete"
+    const progressColor = "bg-blue-50 text-blue-600"
+
     const [expandedSteps, setExpandedSteps] = useState<number[]>([0, 1])
 
     const toggleStep = (index: number) => {
@@ -102,16 +105,16 @@ export default function MyClassesDetailPage() {
                 <ChevronRight className="h-3 w-3" />
                 <span>My Classes</span>
                 <ChevronRight className="h-3 w-3" />
-                <span className="font-semibold text-gray-900">MT-Batch II</span>
+                <span className="font-semibold text-gray-900">{title}</span>
             </div>
 
             {/* Header Card */}
             <Card className="border-none shadow-sm bg-white">
                 <CardContent className="p-6">
                     <div className="flex items-center gap-3 mb-2">
-                        <h1 className="text-2xl font-bold text-gray-900">MT- Batch II</h1>
-                        <Badge className="bg-emerald-100 text-emerald-600 hover:bg-emerald-100 border-none px-2 py-0.5 text-[10px] font-bold">
-                            On Progress
+                        <h1 className="text-2xl font-bold text-gray-900">{title}</h1>
+                        <Badge className={cn("border-none px-2 py-0.5 text-[10px] font-bold", statusColor)}>
+                            {statusLabel}
                         </Badge>
                     </div>
                     <div className="flex items-center gap-2 text-sm text-gray-500">
@@ -134,8 +137,8 @@ export default function MyClassesDetailPage() {
                                     </div>
                                     <h2 className="text-lg font-bold text-gray-900">The Journey</h2>
                                 </div>
-                                <Badge variant="secondary" className="bg-blue-50 text-blue-600 font-bold hover:bg-blue-50">
-                                    87.5% Complete
+                                <Badge variant="secondary" className={cn("font-bold", progressColor)}>
+                                    {progressLabel}
                                 </Badge>
                             </div>
 
@@ -173,26 +176,21 @@ export default function MyClassesDetailPage() {
                                                     <ChevronDown className={cn("h-4 w-4 text-gray-400 transition-transform duration-200", isExpanded ? "rotate-180" : "")} />
                                                 </div>
 
-                                                {/* Expandable Content for Active or Completed Step */}
+                                                {/* Expandable Content */}
                                                 {isExpanded && step.content && Array.isArray(step.content) && (
                                                     <div className="mt-6 space-y-0 relative animate-in fade-in slide-in-from-top-2 duration-200">
-                                                        {/* Vertical connecting line for sub-items */}
                                                         <div className="absolute left-[5px] top-2 bottom-4 w-px bg-gray-200"></div>
 
                                                         {step.content.map((item: any, i: number) => (
                                                             <div key={i} className="relative pl-6 pb-6 last:pb-0">
-                                                                {/* Sub-item Node Icon (Circle) */}
                                                                 <div className={cn(
                                                                     "absolute left-0 top-1.5 h-3 w-3 rounded-full border-2 z-10",
                                                                     step.status === "completed" ? "border-emerald-500 bg-emerald-50" : "border-gray-300 bg-gray-50"
                                                                 )}></div>
 
-                                                                {/* Title - User requested BLACK text */}
                                                                 <h4 className="font-bold text-sm text-gray-900 mb-1">{item.title}</h4>
-                                                                {/* Subtitle / Date */}
                                                                 {item.subtitle && <p className="text-xs text-gray-500 mb-2">{item.subtitle}</p>}
 
-                                                                {/* Card Content for Thumbnails/Video (Kick Off stuff) */}
                                                                 {(item.type === "video" || item.type === "download") && (
                                                                     <div className="bg-gray-50 rounded-lg p-4 border border-gray-100">
                                                                         {item.thumbnails && (
@@ -214,7 +212,6 @@ export default function MyClassesDetailPage() {
                                                                                         <span>Video • {item.duration}</span>
                                                                                     </div>
                                                                                 )}
-                                                                                {/* For non-video types that might just have title/duration later */}
                                                                                 {!item.type && item.duration && <span className="text-xs text-gray-500">{item.duration}</span>}
                                                                             </div>
 
@@ -228,7 +225,6 @@ export default function MyClassesDetailPage() {
                                                                     </div>
                                                                 )}
 
-                                                                {/* Score Badge (Training Phase 1 stuff) */}
                                                                 {item.score && (
                                                                     <div className="absolute right-0 top-0">
                                                                         <Badge variant="outline" className="bg-emerald-50 text-emerald-600 border-emerald-100 font-bold">
@@ -237,7 +233,6 @@ export default function MyClassesDetailPage() {
                                                                     </div>
                                                                 )}
 
-                                                                {/* View Result Action */}
                                                                 {item.action && (
                                                                     <div className="absolute right-0 top-0">
                                                                         <Button variant="link" className="p-0 h-auto text-blue-600 text-xs font-bold gap-1">
@@ -246,7 +241,6 @@ export default function MyClassesDetailPage() {
                                                                         </Button>
                                                                     </div>
                                                                 )}
-
                                                             </div>
                                                         ))}
                                                     </div>

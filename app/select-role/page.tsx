@@ -31,10 +31,12 @@ export default function SelectRolePage() {
     const [isOpen, setIsOpen] = React.useState(false)
 
     const handleContinue = () => {
-        console.log("Selected Role:", selectedRole)
-        // Redirect to dashboard or do something with the role
-        alert(`Continuing as ${selectedRole}`)
-        // router.push("/dashboard") 
+        if (selectedRole === "User") {
+            router.push("/dashboard-karyawan")
+        } else {
+            console.log("Selected Role:", selectedRole)
+            alert(`Continuing as ${selectedRole}`)
+        }
     }
 
     const handleLogout = () => {

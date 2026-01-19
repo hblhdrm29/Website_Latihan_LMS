@@ -34,7 +34,7 @@ export default function LoginPage() {
     if (loginType === "karyawan") {
       router.push("/select-role")
     } else if (loginType === "onboarding") {
-      router.push("/dashboard")
+      router.push("/dashboard-onboarding")
     }
   }
 

@@ -12,15 +12,15 @@ export function TopPerformers() {
     ]
 
     return (
-        <Card className="border-none shadow-sm h-fit">
-            <CardContent className="p-6">
-                <div className="flex items-center justify-between mb-6">
-                    <div>
-                        <h3 className="font-semibold text-lg">Top Performers</h3>
-                        <p className="text-xs text-muted-foreground">Top Employees Ranking</p>
-                    </div>
-                    <button className="text-xs text-blue-600 font-medium hover:underline">View All</button>
+        <Card className="border-none shadow-sm h-fit overflow-hidden">
+            <div className="bg-blue-50/50 p-4 border-b border-blue-100 flex items-center justify-between">
+                <div>
+                    <h3 className="font-semibold text-lg text-gray-900">Top Performers</h3>
+                    <p className="text-xs text-muted-foreground">Top Employees Ranking</p>
                 </div>
+                <button className="text-xs text-blue-600 font-medium hover:underline">View All</button>
+            </div>
+            <CardContent className="p-6">
 
                 <div className="space-y-4">
                     {performers.map((p, i) => (

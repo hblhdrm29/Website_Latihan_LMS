@@ -4,10 +4,12 @@ import { Card, CardContent } from "@/components/ui/card"
 
 export function CourseStats() {
     return (
-        <Card className="border-none shadow-sm">
+        <Card className="border-none shadow-sm overflow-hidden">
+            <div className="bg-blue-50/50 p-4 border-b border-blue-100">
+                <h3 className="font-semibold text-lg text-gray-900">Course Stats</h3>
+                <p className="text-xs text-muted-foreground">Completion Status</p>
+            </div>
             <CardContent className="p-6">
-                <h3 className="font-semibold text-lg mb-1">Course Stats</h3>
-                <p className="text-xs text-muted-foreground mb-6">Completion Status</p>
 
                 <div className="flex flex-col items-center justify-center">
                     {/* CSS-only Donut Chart Mockup */}

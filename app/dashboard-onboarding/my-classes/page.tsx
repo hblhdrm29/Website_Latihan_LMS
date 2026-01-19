@@ -31,7 +31,6 @@ export default function MyClassesPage() {
                         <h2 className="font-bold text-lg text-gray-800">Passed</h2>
                         <span className="bg-emerald-100 text-emerald-600 text-[10px] font-bold px-2 py-0.5 rounded-full">1 Class</span>
                     </div>
-                    <span className="bg-emerald-50 text-emerald-600 text-xs font-bold px-2 py-1 rounded-md">2 Classes</span>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -68,11 +67,24 @@ export default function MyClassesPage() {
                         <h2 className="font-bold text-lg text-gray-800">On Progress</h2>
                         <span className="bg-orange-100 text-orange-600 text-[10px] font-bold px-2 py-0.5 rounded-full">2 Classes</span>
                     </div>
-                    <span className="bg-orange-50 text-orange-600 text-xs font-bold px-2 py-1 rounded-md">3 Classes</span>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <Link href="/dashboard/my-classes/pelatihan" className="block h-full">
+                    <Link href="/dashboard-onboarding/my-classes/pelatihan?batch=mt-batch-iii" className="block h-full">
+                        <CourseCard
+                            image="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=600"
+                            title="MT-Batch III"
+                            type="Pelatihan Wajib"
+                            date="Aug 2024 - Mar 2025"
+                            rank="-/57"
+                            status="OnProgress"
+                            progress={0}
+                            icon={FileText}
+                            footerLabel="Modules"
+                            footerValue="Locked"
+                        />
+                    </Link>
+                    <Link href="/dashboard-onboarding/my-classes/pelatihan" className="block h-full">
                         <CourseCard
                             image="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80&w=600"
                             title="MT-Batch II"
@@ -98,18 +110,6 @@ export default function MyClassesPage() {
                         footerLabel="Modules Completed"
                         footerValue="8/12"
                     />
-                    <CourseCard
-                        image="https://imgs.search.brave.com/aV_j6tL8P5kH3tqN9V6vH4qI8r0xK3j2l1m4n1o2p3/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTE1/MzYxOTExMi9waG90/by9wdWJsaWMtc3Bl/YWtpbmctY29uY2Vw/dC11c2luZy13b29k/ZW4tYmxvY2tzLW9u/LXdoaXRlLWJhY2tn/cm91bmQuanBnP3M9/NjEyeDYxMiZ3PTAm/az0yMCZjPTl3UjJr/X3MtbGZqX1ZfV3l0/TllCX2x5X0lfbV9W/X2x5X0lfbV9WX2x5/X0lfbV8.jpeg"
-                        title="Public Speaking"
-                        type="Communication"
-                        date="Oct 05 - Oct 25, 2023"
-                        rank="-/45"
-                        status="OnProgress"
-                        progress={25}
-                        icon={FileText}
-                        footerLabel="Live Sessions"
-                        footerValue="2/5"
-                    />
                 </div>
             </div>
             {/* Unpassed Section */}
@@ -122,7 +122,6 @@ export default function MyClassesPage() {
                         <h2 className="font-bold text-lg text-gray-800">Unpassed</h2>
                         <span className="bg-red-100 text-red-600 text-[10px] font-bold px-2 py-0.5 rounded-full">1 Class</span>
                     </div>
-                    <span className="bg-red-50 text-red-600 text-xs font-bold px-2 py-1 rounded-md">1 Class</span>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

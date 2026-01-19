@@ -3,20 +3,30 @@
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Calendar, ChevronRight, Lock, ChevronDown, ArrowRight } from "lucide-react"
+import { Calendar, ChevronRight, CheckCircle2, PlayCircle, Lock, Download, ChevronDown, ArrowRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { useState } from "react"
+import Link from "next/link"
+
+interface StepContent {
+    title: string
+    type?: "video" | "download" | "module" | "assessment"
+    duration?: string
+    subtitle?: string
+    thumbnails?: string[]
+    score?: number
+    action?: { label: string; href?: string }
+}
 
 interface Step {
     title: string
     status: "completed" | "active" | "pending" | "locked"
     date?: string
     subtitle?: string
-    content?: any[] | null
+    content?: StepContent[] | null
 }
 
-export default function MtBatch3Page() {
-    // Mock data for Locked view
+export function EnrollMtBatchIII() {
     const steps: Step[] = [
         {
             title: "Kick Off (19 Agustus 2024)",
@@ -38,15 +48,31 @@ export default function MtBatch3Page() {
         }
     ]
 
+    const title = "MT- Batch III"
+    const statusLabel = "Locked"
+    const statusColor = "bg-red-100 text-red-600 hover:bg-red-100"
+    const progressLabel = "0% Complete"
+    const progressColor = "bg-blue-50 text-blue-600"
+
+    const [expandedSteps, setExpandedSteps] = useState<number[]>([0, 1])
+
+    const toggleStep = (index: number) => {
+        setExpandedSteps(prev =>
+            prev.includes(index)
+                ? prev.filter(i => i !== index)
+                : [...prev, index]
+        )
+    }
+
     return (
         <div className="p-6 space-y-6 pb-20">
-            {/* Breadcrumb */}
+            {/* Breadcrumb Mock */}
             <div className="flex items-center gap-2 text-xs text-gray-500 mb-2">
                 <span>Dashboard</span>
                 <ChevronRight className="h-3 w-3" />
                 <span>Class</span>
                 <ChevronRight className="h-3 w-3" />
-                <span className="font-semibold text-gray-900">MT-Batch III</span>
+                <span className="font-semibold text-gray-900">{title}</span>
             </div>
 
             {/* Header Card */}
@@ -54,9 +80,9 @@ export default function MtBatch3Page() {
                 <CardContent className="p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
                     <div>
                         <div className="flex items-center gap-3 mb-2">
-                            <h1 className="text-2xl font-bold text-gray-900">MT- Batch III</h1>
-                            <Badge className="bg-red-100 text-red-600 hover:bg-red-100 border-none px-2 py-0.5 text-[10px] font-bold">
-                                Locked
+                            <h1 className="text-2xl font-bold text-gray-900">{title}</h1>
+                            <Badge className={cn("border-none px-2 py-0.5 text-[10px] font-bold", statusColor)}>
+                                {statusLabel}
                             </Badge>
                         </div>
                         <div className="flex items-center gap-2 text-sm text-gray-500">
@@ -64,9 +90,13 @@ export default function MtBatch3Page() {
                             <span>16 Agustus 2024 - 18 Agustus 2024</span>
                         </div>
                     </div>
-                    <Button className="bg-[#4F46E5] hover:bg-[#4338ca] text-white font-semibold px-6">
-                        Enroll Now <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
+                    <div>
+                        <Link href="/dashboard-onboarding/my-classes/pelatihan?batch=mt-batch-iii">
+                            <Button className="bg-[#4F46E5] hover:bg-[#4338ca] text-white font-semibold px-6 rounded-full shadow-lg shadow-indigo-200 transition-all hover:scale-105">
+                                Enroll Now <ArrowRight className="ml-2 h-4 w-4" />
+                            </Button>
+                        </Link>
+                    </div>
                 </CardContent>
             </Card>
 
@@ -79,40 +109,56 @@ export default function MtBatch3Page() {
                                 <div className="flex items-center gap-2">
                                     <div className="p-1.5 bg-blue-100 rounded-md">
                                         <div className="h-4 w-4 border-l-2 border-r-2 border-blue-600"></div>
+                                        {/* Simple icon for "Map" / Journey */}
                                     </div>
                                     <h2 className="text-lg font-bold text-gray-900">The Journey</h2>
                                 </div>
-                                <Badge variant="secondary" className="bg-blue-50 text-blue-600 font-bold hover:bg-blue-50">
-                                    0% Complete
+                                <Badge variant="secondary" className={cn("font-bold", progressColor)}>
+                                    {progressLabel}
                                 </Badge>
                             </div>
 
                             {/* Timeline */}
                             <div className="relative pl-4 space-y-8 before:absolute before:left-[27px] before:top-2 before:bottom-10 before:w-0.5 before:bg-gray-100">
                                 {steps.map((step, index) => {
+                                    const isExpanded = expandedSteps.includes(index);
+
                                     return (
                                         <div key={index} className="relative pl-8">
                                             {/* Timeline Node */}
                                             <div className="absolute left-0 top-1 bg-white">
-                                                <div className="h-6 w-6 rounded-full bg-gray-100 flex items-center justify-center">
-                                                    <Lock className="h-3 w-3 text-gray-400" />
-                                                </div>
+                                                {step.status === "completed" && <CheckCircle2 className="h-6 w-6 text-emerald-500 fill-emerald-50" />}
+                                                {step.status === "active" && <div className="h-6 w-6 rounded-full bg-gray-200 border-4 border-white ring-1 ring-gray-300"></div>}
+                                                {step.status === "pending" && <PlayCircle className="h-6 w-6 text-blue-100 text-blue-500 fill-blue-50" />}
+                                                {step.status === "locked" && <div className="h-6 w-6 rounded-full bg-gray-100 flex items-center justify-center"><Lock className="h-3 w-3 text-gray-400" /></div>}
                                             </div>
 
                                             {/* Content */}
                                             <div className={cn(
                                                 "pb-4",
-                                                index !== steps.length - 1 ? "border-b border-gray-100" : ""
+                                                step.status !== "locked" ? "border-b border-gray-100 last:border-0" : ""
                                             )}>
-                                                <div className="flex items-start justify-between cursor-default select-none">
+                                                <div
+                                                    className="flex items-start justify-between cursor-pointer group select-none"
+                                                    onClick={() => toggleStep(index)}
+                                                >
                                                     <div>
-                                                        <h3 className="font-bold text-sm text-gray-900">
+                                                        <h3 className={cn("font-bold text-sm", step.status === "locked" ? "text-gray-400" : "text-gray-900")}>
                                                             {step.title}
                                                         </h3>
+                                                        {step.date && <p className="text-xs text-gray-500 mt-0.5">{step.date}</p>}
                                                         {step.subtitle && <p className="text-xs text-gray-400 mt-0.5">{step.subtitle}</p>}
                                                     </div>
-                                                    <ChevronDown className="h-4 w-4 text-gray-300" />
+                                                    <ChevronDown className={cn("h-4 w-4 text-gray-400 transition-transform duration-200", isExpanded ? "rotate-180" : "")} />
                                                 </div>
+
+                                                {/* Expandable Content for Active or Completed Step */}
+                                                {isExpanded && step.content && Array.isArray(step.content) && (
+                                                    <div className="mt-6 space-y-0 relative animate-in fade-in slide-in-from-top-2 duration-200">
+                                                        {/* Vertical connecting line for sub-items */}
+                                                        <div className="absolute left-[5px] top-2 bottom-4 w-px bg-gray-200"></div>
+                                                    </div>
+                                                )}
                                             </div>
                                         </div>
                                     )

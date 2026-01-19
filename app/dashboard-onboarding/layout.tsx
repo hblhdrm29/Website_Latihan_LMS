@@ -29,6 +29,7 @@ import logoPeruri from "../../public/assets/Logo_Peruri.png"
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
     const [isSidebarOpen, setIsSidebarOpen] = React.useState(false)
     const [showNotifications, setShowNotifications] = React.useState(false)
+    const [showHelp, setShowHelp] = React.useState(false)
 
     return (
         <div className="min-h-screen bg-gray-50 flex flex-col">
@@ -128,18 +129,19 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                     </div>
 
                     <div className="flex-1 py-3 px-2 space-y-1 overflow-y-auto">
-                        <NavItem icon={LayoutDashboard} label="Dashboard" href="/dashboard" />
-                        <NavItem icon={BookOpen} label="My Classes" href="/dashboard/my-classes" />
+                        <NavItem icon={LayoutDashboard} label="Dashboard" href="/dashboard-onboarding" />
+                        <NavItem icon={BookOpen} label="My Classes" href="/dashboard-onboarding/my-classes" />
 
-                        <NavGroup icon={GraduationCap} label="Class" href="/dashboard/class">
+                        <NavGroup icon={GraduationCap} label="Class" href="/dashboard-onboarding/class" matchPath="/dashboard-onboarding/class">
                             {/* Magang Trainee Sub-Section */}
                             <div className="pl-9 mt-1 mb-3">
                                 <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">Magang Trainee</p>
                                 <div className="space-y-1 border-l border-gray-100 pl-2">
                                     <NavItem label="MT- Batch IV" href="#" small disableHover />
-                                    <NavItem label="MT- Batch III" href="#" small disableHover />
-                                    <NavItem label="MT- Batch II" href="#" small disableHover />
-                                    <NavItem label="More" href="/dashboard/class" small disableHover />
+                                    <NavItem label="MT- Batch III" href="/dashboard-onboarding/class/daftar-pelatihan/mt-batch-iii" small disableHover />
+                                    <NavItem label="MT- Batch II" href="/dashboard-onboarding/class/daftar-pelatihan" small disableHover />
+
+                                    <NavItem label="More" href="/dashboard-onboarding/class" small disableHover />
                                 </div>
                             </div>
 
@@ -150,16 +152,16 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                                     <NavItem label="PKWT-Batch IV" href="#" small disableHover />
                                     <NavItem label="PKWT-Batch III" href="#" small disableHover />
                                     <NavItem label="PKWT-Batch II" href="#" small disableHover />
-                                    <NavItem label="More" href="/dashboard/class" small disableHover />
+                                    <NavItem label="More" href="/dashboard-onboarding/class" small disableHover />
                                 </div>
                             </div>
                         </NavGroup>
 
-                        <NavItem icon={ClipboardList} label="Evaluasi" href="/dashboard/evaluasi" />
+                        <NavItem icon={ClipboardList} label="Evaluasi" href="/dashboard-onboarding/evaluasi" />
                     </div>
 
                     <div className="border-t mt-auto p-2">
-                        <NavItem icon={User} label="Profile" href="/dashboard/profile" />
+                        <NavItem icon={User} label="Profile" href="/dashboard-onboarding/profile" />
                     </div>
                 </aside>
 
@@ -172,8 +174,34 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 )}
 
                 {/* Main Content */}
-                <main className="flex-1 overflow-auto">
+                <main className="flex-1 overflow-auto relative">
                     {children}
+
+                    {/* Floating Help Icon */}
+                    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+                        {showHelp && (
+                            <div className="mb-4 w-56 bg-[#27272A] rounded-xl overflow-hidden shadow-2xl text-white animate-in fade-in zoom-in-95 duration-200 origin-bottom-right border border-white/10">
+                                <div className="p-2 pb-0">
+                                    <button className="w-full text-left px-3 py-2 text-sm font-medium text-white hover:bg-white/10 rounded-lg transition-colors">Help Center</button>
+                                </div>
+                                <div className="p-2 space-y-1">
+                                    <button className="w-full text-left px-3 py-2 text-sm font-medium hover:bg-white/10 rounded-lg transition-colors">Youtube Videos</button>
+                                    <button className="w-full text-left px-3 py-2 text-sm font-medium hover:bg-white/10 rounded-lg transition-colors">Legal Summary</button>
+                                    <button className="w-full text-left px-3 py-2 text-sm font-medium hover:bg-white/10 rounded-lg transition-colors">Report Abuse</button>
+                                </div>
+                                <div className="border-t border-dashed border-white/20 mx-2 my-1"></div>
+                                <div className="p-2 pt-0">
+                                    <button className="w-full text-left px-3 py-2 text-sm font-medium hover:bg-white/10 rounded-lg transition-colors">Change Language...</button>
+                                </div>
+                            </div>
+                        )}
+                        <button
+                            onClick={() => setShowHelp(!showHelp)}
+                            className="h-10 w-10 bg-[#3B82F6] rounded-full text-white shadow-lg hover:bg-[#2563EB] transition-all hover:scale-110 flex items-center justify-center shrink-0"
+                        >
+                            <span className="font-bold text-2xl">?</span>
+                        </button>
+                    </div>
                 </main>
             </div>
         </div >
@@ -202,7 +230,7 @@ function NavItem({
     const pathname = usePathname()
     // Determine active state: if explicitly passed active prop is true, OR if current pathname matches href
     // Special handling for dashboard root to match exactly, others can match check if starts with
-    const isActive = active || (href === "/dashboard" ? pathname === "/dashboard" : pathname?.startsWith(href))
+    const isActive = active || (href === "/dashboard-onboarding" ? pathname === "/dashboard-onboarding" : pathname?.startsWith(href))
 
     return (
         <Link
@@ -223,22 +251,25 @@ function NavItem({
     )
 }
 
-function NavGroup({ icon: Icon, label, href, children }: { icon: any, label: string, href?: string, children: React.ReactNode }) {
+function NavGroup({ icon: Icon, label, href, matchPath, children }: { icon: any, label: string, href?: string, matchPath?: string, children: React.ReactNode }) {
     const pathname = usePathname()
-    const isActive = href && (href === "/dashboard" ? pathname === "/dashboard" : pathname?.startsWith(href))
+    const targetPath = matchPath || href
+    const isActive = targetPath && (targetPath === "/dashboard-onboarding" ? pathname === "/dashboard-onboarding" : pathname?.startsWith(targetPath))
 
     const [isOpen, setIsOpen] = React.useState(!!isActive)
 
     React.useEffect(() => {
-        setIsOpen(!!isActive)
+        if (isActive) setIsOpen(true)
     }, [isActive])
 
     return (
         <div>
             <div className={cn(
-                "w-full flex items-center justify-between px-3 py-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors",
+                "w-full flex items-center justify-between px-3 py-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors cursor-pointer",
                 isActive && "bg-blue-50 text-blue-600 font-medium hover:bg-blue-100"
-            )}>
+            )}
+                onClick={() => !href && setIsOpen(!isOpen)}
+            >
                 {href ? (
                     <Link
                         href={href}
@@ -251,13 +282,16 @@ function NavGroup({ icon: Icon, label, href, children }: { icon: any, label: str
                         <span className="text-sm">{label}</span>
                     </Link>
                 ) : (
-                    <div className="flex items-center gap-3 cursor-default">
+                    <div className="flex items-center gap-3 flex-1">
                         <Icon className={cn("h-5 w-5", isActive && "text-blue-600")} />
                         <span className="text-sm">{label}</span>
                     </div>
                 )}
 
-                <button onClick={() => setIsOpen(!isOpen)} className="p-1 hover:bg-gray-200 rounded">
+                <button onClick={(e) => {
+                    e.stopPropagation()
+                    setIsOpen(!isOpen)
+                }} className="p-1 rounded">
                     <ChevronDown className={cn("h-4 w-4 transition-transform", isOpen && "rotate-180")} />
                 </button>
             </div>
