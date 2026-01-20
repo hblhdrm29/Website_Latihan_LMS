@@ -35,9 +35,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         <div className="min-h-screen bg-gray-50 flex flex-col">
             {/* Navbar */}
             <header className="h-10 bg-blue-100 text-white flex items-center justify-between px-4 lg:px-6 shadow-md z-50 sticky top-0"
-                style={{
-                    background: "linear-gradient(90deg, #2563EB 0%, #7E22CE 100%)"
-                }}
+                style={{ background: "linear-gradient(90deg, #2563EB 0%, #7E22CE 100%)" }}
             >
                 <div className="flex items-center gap-4">
                     <button className="lg:hidden" onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
@@ -87,12 +85,12 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                                 </>
                             )}
                         </div>
-                        <button className="h-8 w-8 flex items-center justify-center hover:bg-white/10 rounded-full border border-white/20 transition-all hidden md:flex">
+                        <Link href="/dashboard-onboarding" className="h-8 w-8 flex items-center justify-center hover:bg-white/10 rounded-full border border-white/20 transition-all hidden md:flex">
                             <Home className="h-4 w-4" />
-                        </button>
-                        <button className="h-8 w-8 flex items-center justify-center hover:bg-white/10 rounded-full border border-white/20 transition-all hidden md:flex">
+                        </Link>
+                        <Link href="/dashboard-onboarding" className="h-8 w-8 flex items-center justify-center hover:bg-white/10 rounded-full border border-white/20 transition-all hidden md:flex">
                             <LayoutDashboard className="h-4 w-4" />
-                        </button>
+                        </Link>
                         <button className="h-8 w-8 flex items-center justify-center hover:bg-white/10 rounded-full border border-white/20 transition-all hidden md:flex">
                             <Lightbulb className="h-4 w-4" />
                         </button>
@@ -157,7 +155,23 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                             </div>
                         </NavGroup>
 
-                        <NavItem icon={ClipboardList} label="Evaluasi" href="/dashboard-onboarding/evaluasi" />
+                        <NavGroup icon={ClipboardList} label="Evaluasi" matchPath="/dashboard-onboarding/evaluasi">
+                            {/* Level 1 Sub-Section */}
+                            <div className="pl-9 mt-1 mb-3">
+                                <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">Level 1</p>
+                                <div className="space-y-1 border-l border-gray-100 pl-2">
+                                    <NavItem label="Reaction" href="/dashboard-onboarding/evaluasi-level-1" small />
+                                </div>
+                            </div>
+
+                            {/* Level 3 Sub-Section */}
+                            <div className="pl-9 mt-1">
+                                <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">Level 3</p>
+                                <div className="space-y-1 border-l border-gray-100 pl-2">
+                                    <NavItem label="Behavior" href="/dashboard-onboarding/evaluasi-level-3" small />
+                                </div>
+                            </div>
+                        </NavGroup>
                     </div>
 
                     <div className="border-t mt-auto p-2">

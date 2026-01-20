@@ -28,18 +28,18 @@ export function StatsCards() {
             bg: "bg-yellow-50",
         },
         {
-            label: "UNPASSED",
-            value: "0",
-            icon: XCircle,
-            color: "bg-red-100 text-red-600",
-            bg: "bg-red-50",
-        },
-        {
             label: "PASSED",
             value: "1",
             icon: Trophy,
             color: "bg-cyan-100 text-cyan-600",
             bg: "bg-cyan-50",
+        },
+        {
+            label: "UNPASSED",
+            value: "0",
+            icon: XCircle,
+            color: "bg-red-100 text-red-600",
+            bg: "bg-red-50",
         },
     ]
 

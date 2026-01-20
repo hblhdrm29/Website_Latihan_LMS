@@ -22,7 +22,7 @@ import p1Wide from "../public/assets/p1_wide.png"
 
 export default function LoginPage() {
   const router = useRouter()
-  const [loginType, setLoginType] = React.useState<"onboarding" | "karyawan">("karyawan")
+  const [loginType, setLoginType] = React.useState<"onboarding" | "karyawan" | null>(null)
   const [showPassword, setShowPassword] = React.useState(false)
   const [captchaInput, setCaptchaInput] = React.useState("")
 
@@ -30,6 +30,12 @@ export default function LoginPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+
+    if (!loginType) {
+      alert("Silakan pilih masuk sebagai Onboarding atau Karyawan")
+      return
+    }
+
     console.log("Login attempt:", { loginType, captchaInput })
     if (loginType === "karyawan") {
       router.push("/select-role")
@@ -76,11 +82,9 @@ export default function LoginPage() {
                     onClick={() => setLoginType("onboarding")}
                     className={cn(
                       "flex flex-col items-center justify-center gap-1 rounded-md border p-2 text-[11px] font-medium transition-all",
-                      // Hover state fix: explicitly blue on hover
-                      "hover:bg-blue-50 hover:text-blue-600 hover:border-blue-200",
                       loginType === "onboarding"
-                        ? "border-blue-500 bg-blue-50 text-blue-700 ring-1 ring-blue-500" // matched blue theme for active
-                        : "border-input bg-background text-muted-foreground"
+                        ? "border-blue-500 bg-blue-50 text-blue-700 ring-1 ring-blue-500" // Active state
+                        : "border-input bg-background text-muted-foreground hover:bg-blue-50 hover:text-blue-600 hover:border-blue-200" // Inactive + Hover
                     )}
                   >
                     <Handshake className="h-4 w-4" />
@@ -91,11 +95,9 @@ export default function LoginPage() {
                     onClick={() => setLoginType("karyawan")}
                     className={cn(
                       "flex flex-col items-center justify-center gap-1 rounded-md border p-2 text-[11px] font-medium transition-all",
-                      // Hover state fix: explicitly blue on hover
-                      "hover:bg-blue-50 hover:text-blue-600 hover:border-blue-200",
                       loginType === "karyawan"
-                        ? "border-blue-500 bg-blue-50 text-blue-700 ring-1 ring-blue-500"
-                        : "border-input bg-background text-muted-foreground"
+                        ? "border-blue-500 bg-blue-50 text-blue-700 ring-1 ring-blue-500" // Active state
+                        : "border-input bg-background text-muted-foreground hover:bg-blue-50 hover:text-blue-600 hover:border-blue-200" // Inactive + Hover
                     )}
                   >
                     <User className="h-4 w-4" />

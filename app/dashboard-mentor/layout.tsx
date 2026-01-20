@@ -7,20 +7,16 @@ import { usePathname } from "next/navigation"
 import {
     LayoutDashboard,
     BookOpen,
-    GraduationCap,
-    FileText,
-    ClipboardList,
+    Users,
     User,
     LogOut,
-    ChevronDown,
     Menu,
     X,
     Bell,
     Home,
     Lightbulb,
-    Settings,
-    Award,
-    Briefcase,
+    HelpCircle,
+    GraduationCap,
     IdCard
 } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -33,7 +29,6 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     const [isSidebarOpen, setIsSidebarOpen] = React.useState(false)
     const [showNotifications, setShowNotifications] = React.useState(false)
     const [showRole, setShowRole] = React.useState(false)
-    const [showHelp, setShowHelp] = React.useState(false)
 
     return (
         <div className="min-h-screen bg-gray-50 flex flex-col">
@@ -91,10 +86,10 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                                 </>
                             )}
                         </div>
-                        <Link href="/dashboard-karyawan" className="h-8 w-8 flex items-center justify-center hover:bg-white/10 rounded-full border border-white/20 transition-all hidden md:flex">
+                        <Link href="/dashboard-mentor" className="h-8 w-8 flex items-center justify-center hover:bg-white/10 rounded-full border border-white/20 transition-all hidden md:flex">
                             <Home className="h-4 w-4" />
                         </Link>
-                        <Link href="/dashboard-karyawan" className="h-8 w-8 flex items-center justify-center hover:bg-white/10 rounded-full border border-white/20 transition-all hidden md:flex">
+                        <Link href="/dashboard-mentor" className="h-8 w-8 flex items-center justify-center hover:bg-white/10 rounded-full border border-white/20 transition-all hidden md:flex">
                             <LayoutDashboard className="h-4 w-4" />
                         </Link>
                         <button className="h-8 w-8 flex items-center justify-center hover:bg-white/10 rounded-full border border-white/20 transition-all hidden md:flex">
@@ -128,12 +123,12 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                                         <span className="text-[9px] font-bold text-gray-400 uppercase tracking-wider">Current Role</span>
                                     </div>
                                     <div className="p-2">
-                                        <div className="flex items-center gap-2 bg-blue-50 p-1.5 rounded-lg border border-blue-100">
-                                            <div className="h-6 w-6 bg-blue-100 rounded-full flex items-center justify-center text-blue-600">
-                                                <User className="h-3 w-3" />
+                                        <div className="flex items-center gap-2 bg-purple-50 p-1.5 rounded-lg border border-purple-100">
+                                            <div className="h-6 w-6 bg-purple-100 rounded-full flex items-center justify-center text-purple-600">
+                                                <GraduationCap className="h-3 w-3" />
                                             </div>
                                             <div>
-                                                <p className="text-xs font-bold text-gray-900 leading-none mb-0.5">User</p>
+                                                <p className="text-xs font-bold text-gray-900 leading-none mb-0.5">Mentor</p>
                                                 <p className="text-[9px] text-gray-500 leading-none">Active</p>
                                             </div>
                                         </div>
@@ -164,35 +159,13 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                     </div>
 
                     <div className="flex-1 py-3 px-2 space-y-1 overflow-y-auto">
-                        <NavItem icon={LayoutDashboard} label="Dashboard" href="/dashboard-karyawan" />
-                        <NavItem icon={BookOpen} label="My Course" href="/dashboard-karyawan/my-course" />
-
-                        <NavGroup icon={GraduationCap} label="Course" href="/dashboard-karyawan/course" matchPath="/dashboard-karyawan/course">
-                            <div className="pl-9 mt-1 mb-3">
-                                <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">Pelatihan Wajib</p>
-                                <div className="space-y-1 border-l border-gray-100 pl-2">
-                                    <NavItem label="PKPM" href="#" small disableHover />
-                                    <NavItem label="xxxxx" href="#" small disableHover />
-                                    <NavItem label="xxxx" href="#" small disableHover />
-                                    <NavItem label="xxxxx" href="#" small disableHover />
-                                    <NavItem label="More..." href="/dashboard-karyawan/course" small disableHover />
-                                </div>
-                            </div>
-                            {/* TDP Sub-Section */}
-                            <div className="pl-9 mt-1">
-                                <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">TDP</p>
-                                <div className="space-y-1 border-l border-gray-100 pl-2">
-                                    <NavItem label="TDP Kaun" href="#" small disableHover />
-                                    <NavItem label="TDP Kasek" href="#" small disableHover />
-                                    <NavItem label="TDP Kadep" href="#" small disableHover />
-                                    <NavItem label="More..." href="#" small disableHover />
-                                </div>
-                            </div>
-                        </NavGroup>
+                        <NavItem icon={LayoutDashboard} label="Dashboard" href="/dashboard-mentor" />
+                        <NavItem icon={BookOpen} label="My Classes" href="/dashboard-mentor/my-classes" />
+                        <NavItem icon={Users} label="List Mentee" href="/dashboard-mentor/list-mentee" />
                     </div>
 
                     <div className="border-t mt-auto p-2">
-                        <NavItem icon={User} label="Profile" href="/dashboard-karyawan/profile" />
+                        <NavItem icon={User} label="Profile" href="/dashboard-mentor/profile" />
                     </div>
                 </aside>
 
@@ -207,32 +180,6 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 {/* Main Content */}
                 <main className="flex-1 overflow-auto relative">
                     {children}
-
-                    {/* Floating Help Icon */}
-                    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end">
-                        {showHelp && (
-                            <div className="mb-4 w-56 bg-[#27272A] rounded-xl overflow-hidden shadow-2xl text-white animate-in fade-in zoom-in-95 duration-200 origin-bottom-right border border-white/10">
-                                <div className="p-2 pb-0">
-                                    <button className="w-full text-left px-3 py-2 text-sm font-medium text-white hover:bg-white/10 rounded-lg transition-colors">Help Center</button>
-                                </div>
-                                <div className="p-2 space-y-1">
-                                    <button className="w-full text-left px-3 py-2 text-sm font-medium hover:bg-white/10 rounded-lg transition-colors">Youtube Videos</button>
-                                    <button className="w-full text-left px-3 py-2 text-sm font-medium hover:bg-white/10 rounded-lg transition-colors">Legal Summary</button>
-                                    <button className="w-full text-left px-3 py-2 text-sm font-medium hover:bg-white/10 rounded-lg transition-colors">Report Abuse</button>
-                                </div>
-                                <div className="border-t border-dashed border-white/20 mx-2 my-1"></div>
-                                <div className="p-2 pt-0">
-                                    <button className="w-full text-left px-3 py-2 text-sm font-medium hover:bg-white/10 rounded-lg transition-colors">Change Language...</button>
-                                </div>
-                            </div>
-                        )}
-                        <button
-                            onClick={() => setShowHelp(!showHelp)}
-                            className="h-10 w-10 bg-[#3B82F6] rounded-full text-white shadow-lg hover:bg-[#2563EB] transition-all hover:scale-110 flex items-center justify-center shrink-0"
-                        >
-                            <span className="font-bold text-2xl">?</span>
-                        </button>
-                    </div>
                 </main>
             </div>
         </div >
@@ -259,9 +206,7 @@ function NavItem({
     disableHover?: boolean
 }) {
     const pathname = usePathname()
-    // Determine active state: if explicitly passed active prop is true, OR if current pathname matches href
-    // Special handling for dashboard root to match exactly, others can match check if starts with
-    const isActive = active || (href === "/dashboard-karyawan" ? pathname === "/dashboard-karyawan" : pathname?.startsWith(href))
+    const isActive = active || (href === "/dashboard-mentor" ? pathname === "/dashboard-mentor" : pathname?.startsWith(href))
 
     return (
         <Link
@@ -279,57 +224,5 @@ function NavItem({
             {Icon && <Icon className={cn("h-5 w-5", isActive && !disableHover && "text-blue-600")} />}
             <span className={cn("text-sm", small && "text-[12px]")}>{label}</span>
         </Link>
-    )
-}
-
-function NavGroup({ icon: Icon, label, href, matchPath, children }: { icon: any, label: string, href?: string, matchPath?: string, children: React.ReactNode }) {
-    const pathname = usePathname()
-    const targetPath = matchPath || href
-    const isActive = targetPath && (targetPath === "/dashboard-karyawan" ? pathname === "/dashboard-karyawan" : pathname?.startsWith(targetPath))
-
-    const [isOpen, setIsOpen] = React.useState(!!isActive)
-
-    React.useEffect(() => {
-        if (isActive) setIsOpen(true)
-    }, [isActive])
-
-    return (
-        <div>
-            <div className={cn(
-                "w-full flex items-center justify-between px-3 py-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors cursor-pointer",
-                isActive && "bg-blue-50 text-blue-600 font-medium hover:bg-blue-100"
-            )}
-                onClick={() => !href && setIsOpen(!isOpen)}
-            >
-                {href ? (
-                    <Link
-                        href={href}
-                        className="flex items-center gap-3 flex-1"
-                        onClick={(e) => {
-                            // If it's a link, we let it navigate, but also toggle if needed?
-                            // Usually links shouldn't function as toggles if they navigate away.
-                            // But keeping existing logic just in case.
-                            if (isActive) setIsOpen(!isOpen)
-                        }}
-                    >
-                        <Icon className={cn("h-5 w-5", isActive && "text-blue-600")} />
-                        <span className="text-sm">{label}</span>
-                    </Link>
-                ) : (
-                    <div className="flex items-center gap-3 flex-1">
-                        <Icon className={cn("h-5 w-5", isActive && "text-blue-600")} />
-                        <span className="text-sm">{label}</span>
-                    </div>
-                )}
-
-                <button onClick={(e) => {
-                    e.stopPropagation()
-                    setIsOpen(!isOpen)
-                }} className="p-1 rounded">
-                    <ChevronDown className={cn("h-4 w-4 transition-transform", isOpen && "rotate-180")} />
-                </button>
-            </div>
-            {isOpen && children}
-        </div>
     )
 }

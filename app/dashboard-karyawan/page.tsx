@@ -6,7 +6,6 @@ import { CourseStats } from "@/components/dashboard/course-stats"
 import { SystemAlert } from "@/components/dashboard/system-alert"
 import { Briefcase, CheckCircle, Clock, XCircle, Award, Trophy, ScrollText, CalendarRange, Bell } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
 
 
 
@@ -163,7 +162,7 @@ export default function DashboardPage() {
                     <div className="bg-blue-50/50 p-4 border-b border-blue-100">
                         <h3 className="font-semibold text-base text-gray-900">Sertifikasi</h3>
                     </div>
-                    <div className="absolute top-0 right-0 w-24 h-24 bg-blue-50 rounded-bl-full opacity-50 pointer-events-none"></div>
+
                     <CardContent className="p-6 relative z-10">
                         <div className="flex items-center gap-4 mb-4">
                             <span className="text-5xl font-bold text-blue-600">2</span>
@@ -207,6 +206,8 @@ export default function DashboardPage() {
                 </Card>
             </div>
 
+
+
             <div className="space-y-4">
                 <h3 className="font-bold text-gray-900 text-lg">Recommendation Courses</h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -230,6 +231,64 @@ export default function DashboardPage() {
                                 </div>
                             </div>
 
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            {/* New Section 1: Courses Sesuai Jabatan Anda */}
+            <div className="space-y-4">
+                <h3 className="font-bold text-gray-900 text-lg">Courses Sesuai Jabatan Anda</h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    {[1, 2, 3].map((item) => (
+                        <div key={item} className="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 group cursor-pointer hover:shadow-md transition-all">
+                            <div className="h-32 bg-sky-50 relative overflow-hidden flex items-center justify-center">
+                                <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+                                <div className="absolute bottom-0 w-full h-12 bg-sky-100/50 blur-xl transform scale-150 translate-y-4"></div>
+                                <div className="text-center">
+                                    <Trophy className="h-10 w-10 text-sky-300 mx-auto mb-1 opacity-80" />
+                                </div>
+                            </div>
+                            <div className="p-4">
+                                <h4 className="font-bold text-sm text-gray-900 mb-1">STRATEGIC PLANNING {item}</h4>
+                                <div className="flex items-center gap-2 text-[10px] text-gray-500 mb-2">
+                                    <Briefcase className="h-3 w-3" />
+                                    <span>Leadership</span>
+                                </div>
+                                <div className="flex items-center gap-2 text-[10px] text-gray-500">
+                                    <CalendarRange className="h-3 w-3" />
+                                    <span>20 - 21 Oktober 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            {/* New Section 2: Courses Sesuai Unit Kerja Anda */}
+            <div className="space-y-4">
+                <h3 className="font-bold text-gray-900 text-lg">Courses Sesuai Unit Kerja Anda</h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    {[1, 2, 3].map((item) => (
+                        <div key={item} className="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 group cursor-pointer hover:shadow-md transition-all">
+                            <div className="h-32 bg-emerald-50 relative overflow-hidden flex items-center justify-center">
+                                <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+                                <div className="absolute bottom-0 w-full h-12 bg-emerald-100/50 blur-xl transform scale-150 translate-y-4"></div>
+                                <div className="text-center">
+                                    <Briefcase className="h-10 w-10 text-emerald-300 mx-auto mb-1 opacity-80" />
+                                </div>
+                            </div>
+                            <div className="p-4">
+                                <h4 className="font-bold text-sm text-gray-900 mb-1">OPERATIONAL EXCELLENCE {item}</h4>
+                                <div className="flex items-center gap-2 text-[10px] text-gray-500 mb-2">
+                                    <Briefcase className="h-3 w-3" />
+                                    <span>Operations</span>
+                                </div>
+                                <div className="flex items-center gap-2 text-[10px] text-gray-500">
+                                    <CalendarRange className="h-3 w-3" />
+                                    <span>15 - 16 November 2025</span>
+                                </div>
+                            </div>
                         </div>
                     ))}
                 </div>

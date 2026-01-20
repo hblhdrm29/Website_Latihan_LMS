@@ -33,6 +33,8 @@ export default function SelectRolePage() {
     const handleContinue = () => {
         if (selectedRole === "User") {
             router.push("/dashboard-karyawan")
+        } else if (selectedRole === "Mentor") {
+            router.push("/dashboard-mentor")
         } else {
             console.log("Selected Role:", selectedRole)
             alert(`Continuing as ${selectedRole}`)

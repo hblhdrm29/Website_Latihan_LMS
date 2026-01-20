@@ -3,7 +3,7 @@
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Search, Star, AlertCircle, Briefcase, Clock, Layers, ChevronLeft, ChevronRight, SlidersHorizontal } from "lucide-react"
+import { Search, Star, AlertCircle, Briefcase, Calendar, Layers, ChevronLeft, ChevronRight, SlidersHorizontal } from "lucide-react"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
 
@@ -35,7 +35,7 @@ const SECTIONS: Section[] = [
                 id: "1",
                 title: "HIGH TEAM PERFORMANCE",
                 category: "Leadership & Management",
-                duration: "2 Days Workshop",
+                duration: "12 Jan - 14 Jan 2024",
                 image: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=500",
                 badge: { text: "HOT", color: "yellow" }
             },
@@ -43,14 +43,14 @@ const SECTIONS: Section[] = [
                 id: "2",
                 title: "Data Analytics for Business",
                 category: "Technical Skills",
-                duration: "Self-paced (6h)",
+                duration: "15 Jan - 20 Jan 2024",
                 image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=500"
             },
             {
                 id: "3",
                 title: "Effective Business Communication",
                 category: "Soft Skills",
-                duration: "1 Day Workshop",
+                duration: "22 Jan - 23 Jan 2024",
                 image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&q=80&w=500"
             }
         ]
@@ -64,7 +64,7 @@ const SECTIONS: Section[] = [
                 id: "4",
                 title: "Code of Conduct 2024",
                 category: "Compliance",
-                duration: "Due: Dec 31, 2024",
+                duration: "01 Feb - 28 Feb 2024",
                 image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=500",
                 badge: { text: "REQUIRED", color: "red" }
             },
@@ -72,7 +72,7 @@ const SECTIONS: Section[] = [
                 id: "5",
                 title: "Information Security Awareness",
                 category: "IT Security",
-                duration: "Due: Next Week",
+                duration: "05 Feb - 10 Feb 2024",
                 image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80&w=500",
                 badge: { text: "REQUIRED", color: "red" }
             },
@@ -80,7 +80,7 @@ const SECTIONS: Section[] = [
                 id: "6",
                 title: "Workplace Safety Standards",
                 category: "HSE",
-                duration: "Due: Expired",
+                duration: "12 Feb - 14 Feb 2024",
                 image: "https://images.unsplash.com/photo-1504384308090-c54be3852f33?auto=format&fit=crop&q=80&w=500",
                 badge: { text: "REQUIRED", color: "red" }
             }
@@ -95,21 +95,21 @@ const SECTIONS: Section[] = [
                 id: "7",
                 title: "Advanced Excel for Finance",
                 category: "Technical Skills",
-                duration: "Self-paced (8h)",
+                duration: "01 Mar - 05 Mar 2024",
                 image: "https://images.unsplash.com/photo-1543286386-713df548e9cc?auto=format&fit=crop&q=80&w=500"
             },
             {
                 id: "8",
                 title: "Project Management Fundamentals",
                 category: "Project Management",
-                duration: "3 Days Workshop",
+                duration: "10 Mar - 12 Mar 2024",
                 image: "https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?auto=format&fit=crop&q=80&w=500"
             },
             {
                 id: "9",
                 title: "Mastering Presentations",
                 category: "Soft Skills",
-                duration: "1 Day Workshop",
+                duration: "15 Mar - 16 Mar 2024",
                 image: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&q=80&w=500"
             }
         ]
@@ -146,13 +146,8 @@ function CatalogCourseCard({ course }: { course: Course }) {
                         <span>{course.category}</span>
                     </div>
                     <div className="flex items-center gap-2 text-xs text-gray-500">
-                        <Clock className={cn(
-                            "h-3.5 w-3.5",
-                            course.duration.includes("Due") ? "text-red-500" : "text-gray-400"
-                        )} />
-                        <span className={cn(
-                            course.duration.includes("Due") ? "text-red-600 font-medium" : ""
-                        )}>{course.duration}</span>
+                        <Calendar className="h-3.5 w-3.5 text-blue-500" />
+                        <span>{course.duration}</span>
                     </div>
                 </div>
             </CardContent>
