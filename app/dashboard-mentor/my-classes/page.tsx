@@ -1,10 +1,11 @@
 "use client"
 
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
+import { Button, buttonVariants } from "@/components/ui/button"
 import { Users, Calendar, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
+import { cn } from "@/lib/utils"
 
 export default function MyClassesPage() {
     const classes = [
@@ -82,7 +83,10 @@ export default function MyClassesPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {classes.map((item) => (
-                    <Card key={item.id} className="overflow-hidden border-gray-200 shadow-sm hover:shadow-md transition-shadow flex flex-col">
+                    <Card key={item.id} className="relative overflow-hidden border-gray-200 shadow-sm hover:shadow-md transition-shadow flex flex-col group">
+                        <Link href="/dashboard-mentor/my-classes/view-detail" className="absolute inset-0 z-10">
+                            <span className="sr-only">View Details</span>
+                        </Link>
                         {/* Cover Image */}
                         <div className="h-40 w-full relative">
                             <Image
@@ -95,7 +99,7 @@ export default function MyClassesPage() {
 
                         <CardContent className="p-5 flex-1 space-y-4">
                             <div>
-                                <h3 className="font-bold text-lg text-gray-900 line-clamp-1">{item.title}</h3>
+                                <h3 className="font-bold text-lg text-gray-900 line-clamp-1 group-hover:text-blue-600 transition-colors">{item.title}</h3>
                             </div>
 
                             <div className="space-y-2">
@@ -128,11 +132,12 @@ export default function MyClassesPage() {
                         </CardContent>
 
                         <CardFooter className="p-5 pt-0">
-                            <Button variant="outline" className="w-full border-blue-100 text-blue-600 hover:bg-blue-50 hover:text-blue-700 font-semibold" asChild>
-                                <Link href={`/dashboard-mentor/my-classes/${item.id}`}>
-                                    View Details
-                                </Link>
-                            </Button>
+                            <div className={cn(
+                                buttonVariants({ variant: "outline" }),
+                                "w-full border-blue-100 text-blue-600 group-hover:bg-blue-50 group-hover:text-blue-700 font-semibold cursor-pointer"
+                            )}>
+                                View Details
+                            </div>
                         </CardFooter>
                     </Card>
                 ))}

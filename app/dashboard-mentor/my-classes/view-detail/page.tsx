@@ -4,13 +4,13 @@ import React from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { useParams } from "next/navigation"
-import { 
-    ChevronLeft, 
-    Users, 
-    Calendar, 
-    Clock, 
-    MapPin, 
-    FileText, 
+import {
+    ChevronLeft,
+    Users,
+    Calendar,
+    Clock,
+    MapPin,
+    FileText,
     MoreHorizontal,
     Search,
     Filter
@@ -66,14 +66,14 @@ export default function ClassDetailPage() {
             <div className="relative group rounded-2xl overflow-hidden bg-white shadow-sm border border-gray-100">
                 {/* Cover Image Background */}
                 <div className="h-48 w-full relative">
-                    <Image 
-                        src={classData.cover} 
-                        alt="Cover" 
-                        fill 
+                    <Image
+                        src={classData.cover}
+                        alt="Cover"
+                        fill
                         className="object-cover brightness-[0.85]"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                    
+
                     <div className="absolute top-4 right-4">
                         <Badge className="bg-white/20 hover:bg-white/30 text-white backdrop-blur-md border-0">
                             {classData.status}
@@ -96,7 +96,7 @@ export default function ClassDetailPage() {
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div className="hidden sm:block">
                                 <div className="bg-white/10 backdrop-blur-md rounded-xl p-3 border border-white/10 text-center min-w-[100px]">
                                     <div className="text-2xl font-bold">{classData.progress}%</div>
@@ -142,11 +142,11 @@ export default function ClassDetailPage() {
                                     <div className="flex items-start justify-between mb-4">
                                         <div className="flex items-center gap-3">
                                             <div className="h-12 w-12 rounded-full overflow-hidden border-2 border-gray-100">
-                                                <Image 
-                                                    src={mentee.avatar} 
-                                                    alt={mentee.name} 
-                                                    width={48} 
-                                                    height={48} 
+                                                <Image
+                                                    src={mentee.avatar}
+                                                    alt={mentee.name}
+                                                    width={48}
+                                                    height={48}
                                                     className="object-cover h-full w-full"
                                                 />
                                             </div>
@@ -159,7 +159,7 @@ export default function ClassDetailPage() {
                                             <MoreHorizontal className="h-4 w-4" />
                                         </Button>
                                     </div>
-                                    
+
                                     <div className="space-y-3">
                                         <div className="flex justify-between items-center text-sm">
                                             <span className="text-gray-500">Status</span>
@@ -178,13 +178,13 @@ export default function ClassDetailPage() {
                                                 <span className="font-semibold text-gray-900">{mentee.progress}%</span>
                                             </div>
                                             <div className="h-1.5 w-full bg-gray-100 rounded-full overflow-hidden">
-                                                <div 
-                                                    className="h-full bg-blue-500 rounded-full" 
-                                                    style={{ width: `${mentee.progress}%` }} 
+                                                <div
+                                                    className="h-full bg-blue-500 rounded-full"
+                                                    style={{ width: `${mentee.progress}%` }}
                                                 />
                                             </div>
                                         </div>
-                                        
+
                                         <div className="pt-2">
                                             <Button variant="outline" className="w-full text-xs h-8 border-gray-200 text-gray-600 hover:text-blue-600 hover:border-blue-200 hover:bg-blue-50">
                                                 View Profile
@@ -211,3 +211,5 @@ export default function ClassDetailPage() {
         </div>
     )
 }
+
+
