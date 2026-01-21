@@ -11,7 +11,7 @@ export default function MyClassesPage() {
         {
             id: 1,
             title: "TDP Kaun - Batch X",
-            mentees: 2,
+            mentees: 24,
             date: "Sep - Des 2025",
             image: "/assets/class-cover-1.png"
         },
@@ -99,9 +99,26 @@ export default function MyClassesPage() {
                             </div>
 
                             <div className="space-y-2">
-                                <div className="flex items-center gap-2 text-sm text-gray-600">
-                                    <Users className="h-4 w-4 text-blue-500" />
-                                    <span>{item.mentees} Mentee</span>
+                                <div className="flex items-center gap-3">
+                                    <div className="flex -space-x-2">
+                                        {[...Array(Math.min(item.mentees, 3))].map((_, i) => (
+                                            <div key={i} className="h-7 w-7 rounded-full border-2 border-white overflow-hidden bg-gray-100">
+                                                <Image
+                                                    src="https://github.com/shadcn.png"
+                                                    alt="Mentee"
+                                                    width={28}
+                                                    height={28}
+                                                    className="h-full w-full object-cover"
+                                                />
+                                            </div>
+                                        ))}
+                                        {item.mentees > 3 && (
+                                            <div className="h-7 w-7 rounded-full border-2 border-white bg-gray-50 flex items-center justify-center text-[9px] font-bold text-gray-500">
+                                                +{item.mentees - 3}
+                                            </div>
+                                        )}
+                                    </div>
+                                    <span className="text-xs font-medium text-gray-600">{item.mentees} Mentee</span>
                                 </div>
                                 <div className="flex items-center gap-2 text-sm text-gray-600">
                                     <Calendar className="h-4 w-4 text-gray-400" />

@@ -17,7 +17,8 @@ import {
     Lightbulb,
     HelpCircle,
     GraduationCap,
-    IdCard
+    IdCard,
+    ChevronDown
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -96,51 +97,82 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                             <Lightbulb className="h-4 w-4" />
                         </button>
 
-                        {/* Profile Pill - Compact */}
-                        <div className="flex items-center gap-2 bg-[#7C3AED] pl-0.5 pr-3 py-0.5 rounded-full border border-white/20 shadow-sm ml-2">
-                            <div className="h-6 w-6 rounded-full bg-yellow-400 flex items-center justify-center text-[9px] font-bold ring-2 ring-white/20 text-yellow-900">
-                                ST
-                            </div>
-                            <div className="text-left hidden sm:block leading-tight">
-                                <p className="text-[9px] font-bold text-white uppercase tracking-wider">Santika Tri Hapsari S</p>
-                            </div>
-                        </div>
-
-                        {/* Role Badge - Interactive */}
-                        <div className="relative hidden sm:flex items-center ml-1">
+                        {/* Profile & Role Dropdown */}
+                        <div className="relative ml-2">
                             <button
                                 onClick={() => setShowRole(!showRole)}
                                 className={cn(
-                                    "h-8 w-8 flex items-center justify-center rounded-full border border-white/20 transition-all hover:bg-white/10",
-                                    showRole && "bg-white/20"
+                                    "flex items-center gap-2 bg-[#7C3AED] pl-0.5 pr-3 py-0.5 rounded-full border border-white/20 shadow-sm transition-all hover:bg-[#6D28D9]",
+                                    showRole && "ring-2 ring-white/20"
                                 )}
                             >
-                                <IdCard className="h-4 w-4" />
+                                <div className="h-6 w-6 rounded-full overflow-hidden ring-2 ring-white/20">
+                                    <Image
+                                        src="https://github.com/shadcn.png"
+                                        alt="Profile"
+                                        width={24}
+                                        height={24}
+                                        className="h-full w-full object-cover"
+                                    />
+                                </div>
+                                <div className="text-left hidden sm:block leading-tight">
+                                    <p className="text-[9px] font-bold text-white uppercase tracking-wider">Santika Tri Hapsari S</p>
+                                </div>
+                                <ChevronDown className={cn("h-3 w-3 text-white/70 transition-transform", showRole && "rotate-180")} />
                             </button>
+
                             {showRole && (
-                                <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 bg-white shadow-xl border border-gray-100 rounded-xl w-36 overflow-hidden z-50 animate-in fade-in slide-in-from-top-1">
-                                    <div className="bg-gray-50 px-3 py-1.5 border-b border-gray-100 flex items-center justify-between">
-                                        <span className="text-[9px] font-bold text-gray-400 uppercase tracking-wider">Current Role</span>
+                                <div className="absolute top-full mt-2 right-0 bg-white shadow-xl border border-gray-100 rounded-xl w-48 overflow-hidden z-50 animate-in fade-in slide-in-from-top-1">
+                                    <div className="bg-gray-50 px-3 py-2 border-b border-gray-100">
+                                        <p className="text-[10px] font-bold text-gray-500 uppercase tracking-wider">Switch Role</p>
                                     </div>
-                                    <div className="p-2">
-                                        <div className="flex items-center gap-2 bg-purple-50 p-1.5 rounded-lg border border-purple-100">
-                                            <div className="h-6 w-6 bg-purple-100 rounded-full flex items-center justify-center text-purple-600">
-                                                <GraduationCap className="h-3 w-3" />
+                                    <div className="p-1.5 space-y-1">
+                                        <div className="flex items-center gap-2 bg-purple-50 p-2 rounded-lg border border-purple-100 cursor-pointer">
+                                            <div className="h-7 w-7 bg-purple-100 rounded-full flex items-center justify-center text-purple-600 shrink-0">
+                                                <GraduationCap className="h-3.5 w-3.5" />
                                             </div>
-                                            <div>
+                                            <div className="flex-1">
                                                 <p className="text-xs font-bold text-gray-900 leading-none mb-0.5">Mentor</p>
-                                                <p className="text-[9px] text-gray-500 leading-none">Active</p>
+                                                <p className="text-[9px] text-green-600 font-medium leading-none flex items-center gap-1">
+                                                    <span className="h-1.5 w-1.5 rounded-full bg-green-500"></span>
+                                                    Active Currently
+                                                </p>
                                             </div>
                                         </div>
+
+                                        <div className="flex items-center gap-2 hover:bg-gray-50 p-2 rounded-lg border border-transparent hover:border-gray-100 transition-colors cursor-pointer opacity-50">
+                                            <div className="h-7 w-7 bg-gray-100 rounded-full flex items-center justify-center text-gray-500 shrink-0">
+                                                <GraduationCap className="h-3.5 w-3.5" />
+                                            </div>
+                                            <div className="flex-1">
+                                                <p className="text-xs font-bold text-gray-600 leading-none mb-0.5">Co-Mentor</p>
+                                                <p className="text-[9px] text-gray-400 font-medium leading-none">Not Available</p>
+                                            </div>
+                                        </div>
+
+                                        <div className="flex items-center gap-2 hover:bg-gray-50 p-2 rounded-lg border border-transparent hover:border-gray-100 transition-colors cursor-pointer opacity-50">
+                                            <div className="h-7 w-7 bg-gray-100 rounded-full flex items-center justify-center text-gray-500 shrink-0">
+                                                <User className="h-3.5 w-3.5" />
+                                            </div>
+                                            <div className="flex-1">
+                                                <p className="text-xs font-bold text-gray-600 leading-none mb-0.5">Karyawan</p>
+                                                <p className="text-[9px] text-gray-400 font-medium leading-none">Not Available</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="border-t border-gray-100 p-1.5">
+                                        <Link href="/select-role" className="flex items-center gap-2 hover:bg-red-50 p-2 rounded-lg text-red-600 hover:text-red-700 transition-colors">
+                                            <LogOut className="h-3.5 w-3.5" />
+                                            <span className="text-xs font-bold">Logout</span>
+                                        </Link>
                                     </div>
                                 </div>
                             )}
                         </div>
                     </div>
 
-                    <Link href="/" className="p-1 hover:bg-white/10 rounded-full ml-1 block">
-                        <LogOut className="h-5 w-5" />
-                    </Link>
+
                 </div>
 
             </header >
