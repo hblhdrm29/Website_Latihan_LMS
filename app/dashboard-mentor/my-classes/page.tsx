@@ -2,7 +2,7 @@
 
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Users, Calendar, ArrowRight } from "lucide-react"
+import { Users, Calendar, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 
@@ -119,6 +119,26 @@ export default function MyClassesPage() {
                         </CardFooter>
                     </Card>
                 ))}
+            </div>
+
+            {/* Pagination */}
+            <div className="flex justify-center mt-8 space-x-2">
+                <Button variant="outline" size="icon" className="h-8 w-8" disabled>
+                    <ChevronLeft className="h-4 w-4" />
+                </Button>
+                <Button variant="outline" size="sm" className="h-8 w-8 bg-blue-600 text-white hover:bg-blue-700 hover:text-white border-blue-600">
+                    1
+                </Button>
+                <Button variant="outline" size="sm" className="h-8 w-8 hover:bg-gray-100">
+                    2
+                </Button>
+                <Button variant="outline" size="sm" className="h-8 w-8 hover:bg-gray-100">
+                    3
+                </Button>
+                <span className="flex items-center justify-center h-8 w-8 text-gray-400">...</span>
+                <Button variant="outline" size="icon" className="h-8 w-8">
+                    <ChevronRight className="h-4 w-4" />
+                </Button>
             </div>
         </div>
     )

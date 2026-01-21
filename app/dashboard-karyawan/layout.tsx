@@ -28,12 +28,12 @@ import { cn } from "@/lib/utils"
 import { NotificationPopup } from "@/components/dashboard/notification-popup"
 import logoBumn from "../../public/assets/Logo_BUMN.png"
 import logoPeruri from "../../public/assets/Logo_Peruri.png"
+import { HelpCenter } from "@/components/dashboard/help-center"
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
     const [isSidebarOpen, setIsSidebarOpen] = React.useState(false)
     const [showNotifications, setShowNotifications] = React.useState(false)
     const [showRole, setShowRole] = React.useState(false)
-    const [showHelp, setShowHelp] = React.useState(false)
 
     return (
         <div className="min-h-screen bg-gray-50 flex flex-col">
@@ -209,30 +209,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                     {children}
 
                     {/* Floating Help Icon */}
-                    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end">
-                        {showHelp && (
-                            <div className="mb-4 w-56 bg-[#27272A] rounded-xl overflow-hidden shadow-2xl text-white animate-in fade-in zoom-in-95 duration-200 origin-bottom-right border border-white/10">
-                                <div className="p-2 pb-0">
-                                    <button className="w-full text-left px-3 py-2 text-sm font-medium text-white hover:bg-white/10 rounded-lg transition-colors">Help Center</button>
-                                </div>
-                                <div className="p-2 space-y-1">
-                                    <button className="w-full text-left px-3 py-2 text-sm font-medium hover:bg-white/10 rounded-lg transition-colors">Youtube Videos</button>
-                                    <button className="w-full text-left px-3 py-2 text-sm font-medium hover:bg-white/10 rounded-lg transition-colors">Legal Summary</button>
-                                    <button className="w-full text-left px-3 py-2 text-sm font-medium hover:bg-white/10 rounded-lg transition-colors">Report Abuse</button>
-                                </div>
-                                <div className="border-t border-dashed border-white/20 mx-2 my-1"></div>
-                                <div className="p-2 pt-0">
-                                    <button className="w-full text-left px-3 py-2 text-sm font-medium hover:bg-white/10 rounded-lg transition-colors">Change Language...</button>
-                                </div>
-                            </div>
-                        )}
-                        <button
-                            onClick={() => setShowHelp(!showHelp)}
-                            className="h-10 w-10 bg-[#3B82F6] rounded-full text-white shadow-lg hover:bg-[#2563EB] transition-all hover:scale-110 flex items-center justify-center shrink-0"
-                        >
-                            <span className="font-bold text-2xl">?</span>
-                        </button>
-                    </div>
+                    {/* Floating Help Icon */}
+                    <HelpCenter />
                 </main>
             </div>
         </div >
@@ -272,12 +250,12 @@ function NavItem({
                 isActive && !disableHover && "bg-blue-50 text-blue-600 font-medium hover:bg-blue-100",
                 disableHover && "cursor-default",
                 isSubItem && "pl-9",
-                small && "text-[11px] py-1.5",
+                small && "py-1.5",
                 className
             )}
         >
             {Icon && <Icon className={cn("h-5 w-5", isActive && !disableHover && "text-blue-600")} />}
-            <span className={cn("text-sm", small && "text-[12px]")}>{label}</span>
+            <span className={cn(small ? "text-xs" : "text-sm")}>{label}</span>
         </Link>
     )
 }
