@@ -21,7 +21,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
 
-import cover1 from "@/public/assets/class-cover-1.png"
+import cover1 from "../../../../public/assets/class-cover-1.png"
 
 export default function ClassDetailPage() {
     const params = useParams()

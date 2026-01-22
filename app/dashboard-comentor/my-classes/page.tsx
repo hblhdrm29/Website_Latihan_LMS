@@ -7,10 +7,10 @@ import Link from "next/link"
 import Image from "next/image"
 import { cn } from "@/lib/utils"
 
-import cover1 from "@/public/assets/class-cover-1.png"
-import cover2 from "@/public/assets/class-cover-2.png"
-import cover3 from "@/public/assets/class-cover-3.png"
-import cover4 from "@/public/assets/class-cover-4.png"
+import cover1 from "../../../public/assets/class-cover-1.png"
+import cover2 from "../../../public/assets/class-cover-2.png"
+import cover3 from "../../../public/assets/class-cover-3.png"
+import cover4 from "../../../public/assets/class-cover-4.png"
 
 export default function MyClassesPage() {
     const classes = [
