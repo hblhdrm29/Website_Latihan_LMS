@@ -24,8 +24,8 @@ import { cn } from "@/lib/utils"
 
 import { NotificationPopup } from "@/components/dashboard/notification-popup"
 
-import logoBumn from "../../../public/assets/Logo_BUMN.png"
-import logoPeruri from "../../../public/assets/Logo_Peruri.png"
+import logoBumn from "../../public/assets/Logo_BUMN.png"
+import logoPeruri from "../../public/assets/Logo_Peruri.png"
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
     const [isSidebarOpen, setIsSidebarOpen] = React.useState(false)
