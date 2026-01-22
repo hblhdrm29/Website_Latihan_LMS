@@ -21,10 +21,13 @@ import {
     Settings,
     IdCard
 } from "lucide-react"
-import { cn, basePath } from "@/lib/utils"
+import { cn } from "@/lib/utils"
 
 import { NotificationPopup } from "@/components/dashboard/notification-popup"
 import { HelpCenter } from "@/components/dashboard/help-center"
+
+import logoBumn from "../../../public/assets/Logo_BUMN.png"
+import logoPeruri from "../../../public/assets/Logo_Peruri.png"
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
     const [isSidebarOpen, setIsSidebarOpen] = React.useState(false)
@@ -45,7 +48,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                         {/* Logos */}
                         <div className="h-8 w-auto relative flex items-center gap-2">
                             <Image
-                                src={`${basePath}/assets/Logo_BUMN.png`}
+                                src={logoBumn}
                                 alt="BUMN"
                                 width={80}
                                 height={30}
@@ -53,7 +56,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                             />
                             <div className="h-4 w-px bg-white/30 mx-1"></div>
                             <Image
-                                src={`${basePath}/assets/Logo_Peruri.png`}
+                                src={logoPeruri}
                                 alt="Peruri"
                                 width={60}
                                 height={24}

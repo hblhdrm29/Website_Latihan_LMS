@@ -5,7 +5,12 @@ import { Button, buttonVariants } from "@/components/ui/button"
 import { Users, Calendar, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
-import { cn, basePath } from "@/lib/utils"
+import { cn } from "@/lib/utils"
+
+import cover1 from "@/public/assets/class-cover-1.png"
+import cover2 from "@/public/assets/class-cover-2.png"
+import cover3 from "@/public/assets/class-cover-3.png"
+import cover4 from "@/public/assets/class-cover-4.png"
 
 export default function MyClassesPage() {
     const classes = [
@@ -14,63 +19,63 @@ export default function MyClassesPage() {
             title: "TDP Kaun - Batch X",
             mentees: 24,
             date: "Sep - Des 2025",
-            image: `${basePath}/assets/class-cover-1.png`
+            image: cover1
         },
         {
             id: 2,
             title: "MT-Batch I",
             mentees: 3,
             date: "Sep - Des 2025",
-            image: `${basePath}/assets/class-cover-2.png`
+            image: cover2
         },
         {
             id: 3,
             title: "TDP Kasek - Batch IX",
             mentees: 1,
             date: "Sep - Des 2025",
-            image: `${basePath}/assets/class-cover-3.png`
+            image: cover3
         },
         {
             id: 4,
             title: "Sales Academy - Batch V",
             mentees: 4,
             date: "Jan - Mar 2026",
-            image: `${basePath}/assets/class-cover-4.png`
+            image: cover4
         },
         {
             id: 5,
             title: "Digital Leadership",
             mentees: 5,
             date: "Feb - Apr 2026",
-            image: `${basePath}/assets/class-cover-1.png`
+            image: cover1
         },
         {
             id: 6,
             title: "Data Analytics Bootcamp",
             mentees: 3,
             date: "Mar - Mei 2026",
-            image: `${basePath}/assets/class-cover-2.png`
+            image: cover2
         },
         {
             id: 7,
             title: "SBU Risk Management",
             mentees: 2,
             date: "Apr - Jun 2026",
-            image: `${basePath}/assets/class-cover-3.png`
+            image: cover3
         },
         {
             id: 8,
             title: "Innovation Lab",
             mentees: 6,
             date: "Mei - Jul 2026",
-            image: `${basePath}/assets/class-cover-4.png`
+            image: cover4
         },
         {
             id: 9,
             title: "Future Leaders Program",
             mentees: 4,
             date: "Jun - Agu 2026",
-            image: `${basePath}/assets/class-cover-1.png`
+            image: cover1
         }
     ]
 

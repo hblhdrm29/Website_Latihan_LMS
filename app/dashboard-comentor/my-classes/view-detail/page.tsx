@@ -20,7 +20,8 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
-import { basePath } from "@/lib/utils"
+
+import cover1 from "@/public/assets/class-cover-1.png"
 
 export default function ClassDetailPage() {
     const params = useParams()
@@ -35,7 +36,7 @@ export default function ClassDetailPage() {
         startDate: "01 Sep 2025",
         endDate: "15 Dec 2025",
         progress: 65,
-        cover: `${basePath}/assets/class-cover-1.png`,
+        cover: cover1,
         description: "Program pengembangan kepemimpinan untuk Trainee Development Program (TDP) Kaun Batch X. Fokus pada managerial skills dan strategic thinking."
     }
 
