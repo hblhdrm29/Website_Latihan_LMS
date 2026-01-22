@@ -21,12 +21,9 @@ import {
     Settings,
     IdCard
 } from "lucide-react"
-import { cn } from "@/lib/utils"
+import { cn, basePath } from "@/lib/utils"
 
 import { NotificationPopup } from "@/components/dashboard/notification-popup"
-import logoBumn from "../../public/assets/Logo_BUMN.png"
-import logoPeruri from "../../public/assets/Logo_Peruri.png"
-
 import { HelpCenter } from "@/components/dashboard/help-center"
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
@@ -48,7 +45,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                         {/* Logos */}
                         <div className="h-8 w-auto relative flex items-center gap-2">
                             <Image
-                                src={logoBumn}
+                                src={`${basePath}/assets/Logo_BUMN.png`}
                                 alt="BUMN"
                                 width={80}
                                 height={30}
@@ -56,7 +53,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                             />
                             <div className="h-4 w-px bg-white/30 mx-1"></div>
                             <Image
-                                src={logoPeruri}
+                                src={`${basePath}/assets/Logo_Peruri.png`}
                                 alt="Peruri"
                                 width={60}
                                 height={24}

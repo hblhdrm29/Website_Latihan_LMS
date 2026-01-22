@@ -5,7 +5,7 @@ import { Button, buttonVariants } from "@/components/ui/button"
 import { Users, Calendar, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
-import { cn } from "@/lib/utils"
+import { cn, basePath } from "@/lib/utils"
 
 export default function MyClassesPage() {
     const classes = [
@@ -14,63 +14,63 @@ export default function MyClassesPage() {
             title: "TDP Kaun - Batch X",
             mentees: 24,
             date: "Sep - Des 2025",
-            image: "/assets/class-cover-1.png"
+            image: `${basePath}/assets/class-cover-1.png`
         },
         {
             id: 2,
             title: "MT-Batch I",
             mentees: 3,
             date: "Sep - Des 2025",
-            image: "/assets/class-cover-2.png"
+            image: `${basePath}/assets/class-cover-2.png`
         },
         {
             id: 3,
             title: "TDP Kasek - Batch IX",
             mentees: 1,
             date: "Sep - Des 2025",
-            image: "/assets/class-cover-3.png"
+            image: `${basePath}/assets/class-cover-3.png`
         },
         {
             id: 4,
             title: "Sales Academy - Batch V",
             mentees: 4,
             date: "Jan - Mar 2026",
-            image: "/assets/class-cover-4.png"
+            image: `${basePath}/assets/class-cover-4.png`
         },
         {
             id: 5,
             title: "Digital Leadership",
             mentees: 5,
             date: "Feb - Apr 2026",
-            image: "/assets/class-cover-1.png"
+            image: `${basePath}/assets/class-cover-1.png`
         },
         {
             id: 6,
             title: "Data Analytics Bootcamp",
             mentees: 3,
             date: "Mar - Mei 2026",
-            image: "/assets/class-cover-2.png"
+            image: `${basePath}/assets/class-cover-2.png`
         },
         {
             id: 7,
             title: "SBU Risk Management",
             mentees: 2,
             date: "Apr - Jun 2026",
-            image: "/assets/class-cover-3.png"
+            image: `${basePath}/assets/class-cover-3.png`
         },
         {
             id: 8,
             title: "Innovation Lab",
             mentees: 6,
             date: "Mei - Jul 2026",
-            image: "/assets/class-cover-4.png"
+            image: `${basePath}/assets/class-cover-4.png`
         },
         {
             id: 9,
             title: "Future Leaders Program",
             mentees: 4,
             date: "Jun - Agu 2026",
-            image: "/assets/class-cover-1.png"
+            image: `${basePath}/assets/class-cover-1.png`
         }
     ]
 
