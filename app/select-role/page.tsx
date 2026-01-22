@@ -35,6 +35,8 @@ export default function SelectRolePage() {
             router.push("/dashboard-karyawan")
         } else if (selectedRole === "Mentor") {
             router.push("/dashboard-mentor")
+        } else if (selectedRole === "Co-Mentor") {
+            router.push("/dashboard-comentor")
         } else {
             console.log("Selected Role:", selectedRole)
             alert(`Continuing as ${selectedRole}`)

@@ -174,7 +174,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                                     </div>
 
                                     <div className="border-t border-gray-100 p-1.5">
-                                        <Link href="/select-role" className="flex items-center gap-2 hover:bg-red-50 p-2 rounded-lg text-red-600 hover:text-red-700 transition-colors">
+                                        <Link href="/" className="flex items-center gap-2 hover:bg-red-50 p-2 rounded-lg text-red-600 hover:text-red-700 transition-colors">
                                             <LogOut className="h-3.5 w-3.5" />
                                             <span className="text-xs font-bold">Logout</span>
                                         </Link>

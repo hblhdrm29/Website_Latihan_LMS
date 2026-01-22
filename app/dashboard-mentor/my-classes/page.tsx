@@ -84,9 +84,12 @@ export default function MyClassesPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {classes.map((item) => (
                     <Card key={item.id} className="relative overflow-hidden border-gray-200 shadow-sm hover:shadow-md transition-shadow flex flex-col group">
-                        <Link href="/dashboard-mentor/my-classes/view-detail" className="absolute inset-0 z-10">
-                            <span className="sr-only">View Details</span>
-                        </Link>
+                        {item.id === 1 && (
+                            <Link href="/dashboard-mentor/my-classes/view-detail" className="absolute inset-0 z-10">
+                                <span className="sr-only">View Details</span>
+                            </Link>
+                        )}
+
                         {/* Cover Image */}
                         <div className="h-40 w-full relative">
                             <Image
@@ -134,7 +137,8 @@ export default function MyClassesPage() {
                         <CardFooter className="p-5 pt-0">
                             <div className={cn(
                                 buttonVariants({ variant: "outline" }),
-                                "w-full border-blue-100 text-blue-600 group-hover:bg-blue-50 group-hover:text-blue-700 font-semibold cursor-pointer"
+                                "w-full border-blue-100 text-blue-600 group-hover:bg-blue-50 group-hover:text-blue-700 font-semibold transition-colors",
+                                item.id === 1 ? "cursor-pointer" : "cursor-default"
                             )}>
                                 View Details
                             </div>

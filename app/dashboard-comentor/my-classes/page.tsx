@@ -1,17 +1,18 @@
 "use client"
 
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
+import { Button, buttonVariants } from "@/components/ui/button"
 import { Users, Calendar, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
+import { cn } from "@/lib/utils"
 
 export default function MyClassesPage() {
     const classes = [
         {
             id: 1,
             title: "TDP Kaun - Batch X",
-            mentees: 2,
+            mentees: 24,
             date: "Sep - Des 2025",
             image: "/assets/class-cover-1.png"
         },
@@ -82,7 +83,13 @@ export default function MyClassesPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {classes.map((item) => (
-                    <Card key={item.id} className="overflow-hidden border-gray-200 shadow-sm hover:shadow-md transition-shadow flex flex-col">
+                    <Card key={item.id} className="relative overflow-hidden border-gray-200 shadow-sm hover:shadow-md transition-shadow flex flex-col group">
+                        {item.id === 1 && (
+                            <Link href="/dashboard-comentor/my-classes/view-detail" className="absolute inset-0 z-10">
+                                <span className="sr-only">View Details</span>
+                            </Link>
+                        )}
+
                         {/* Cover Image */}
                         <div className="h-40 w-full relative">
                             <Image
@@ -95,13 +102,30 @@ export default function MyClassesPage() {
 
                         <CardContent className="p-5 flex-1 space-y-4">
                             <div>
-                                <h3 className="font-bold text-lg text-gray-900 line-clamp-1">{item.title}</h3>
+                                <h3 className="font-bold text-lg text-gray-900 line-clamp-1 group-hover:text-blue-600 transition-colors">{item.title}</h3>
                             </div>
 
                             <div className="space-y-2">
-                                <div className="flex items-center gap-2 text-sm text-gray-600">
-                                    <Users className="h-4 w-4 text-blue-500" />
-                                    <span>{item.mentees} Mentee</span>
+                                <div className="flex items-center gap-3">
+                                    <div className="flex -space-x-2">
+                                        {[...Array(Math.min(item.mentees, 3))].map((_, i) => (
+                                            <div key={i} className="h-7 w-7 rounded-full border-2 border-white overflow-hidden bg-gray-100">
+                                                <Image
+                                                    src="https://github.com/shadcn.png"
+                                                    alt="Mentee"
+                                                    width={28}
+                                                    height={28}
+                                                    className="h-full w-full object-cover"
+                                                />
+                                            </div>
+                                        ))}
+                                        {item.mentees > 3 && (
+                                            <div className="h-7 w-7 rounded-full border-2 border-white bg-gray-50 flex items-center justify-center text-[9px] font-bold text-gray-500">
+                                                +{item.mentees - 3}
+                                            </div>
+                                        )}
+                                    </div>
+                                    <span className="text-xs font-medium text-gray-600">{item.mentees} Mentee</span>
                                 </div>
                                 <div className="flex items-center gap-2 text-sm text-gray-600">
                                     <Calendar className="h-4 w-4 text-gray-400" />
@@ -111,11 +135,13 @@ export default function MyClassesPage() {
                         </CardContent>
 
                         <CardFooter className="p-5 pt-0">
-                            <Button variant="outline" className="w-full border-blue-100 text-blue-600 hover:bg-blue-50 hover:text-blue-700 font-semibold" asChild>
-                                <Link href={`/dashboard-comentor/my-classes/${item.id}`}>
-                                    View Details
-                                </Link>
-                            </Button>
+                            <div className={cn(
+                                buttonVariants({ variant: "outline" }),
+                                "w-full border-blue-100 text-blue-600 group-hover:bg-blue-50 group-hover:text-blue-700 font-semibold transition-colors",
+                                item.id === 1 ? "cursor-pointer" : "cursor-default"
+                            )}>
+                                View Details
+                            </div>
                         </CardFooter>
                     </Card>
                 ))}
