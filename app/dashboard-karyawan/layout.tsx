@@ -31,6 +31,7 @@ import logoPeruri from "../../public/assets/Logo_Peruri.png"
 import { HelpCenter } from "@/components/dashboard/help-center"
 
 import { CourseSidebar } from "@/components/dashboard/course-sidebar"
+import { Suspense } from "react"
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
     const [isSidebarOpen, setIsSidebarOpen] = React.useState(false)
@@ -202,7 +203,9 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                     </div>
 
                     {isHighTeamPerformancePage ? (
-                        <CourseSidebar />
+                        <Suspense fallback={<div className="flex-1 bg-white" />}>
+                            <CourseSidebar />
+                        </Suspense>
                     ) : (
                         <div className="flex-1 py-3 px-2 space-y-1 overflow-y-auto">
                             <NavItem icon={LayoutDashboard} label="Dashboard" href="/dashboard-karyawan" />
