@@ -37,6 +37,8 @@ export default function SelectRolePage() {
             router.push("/dashboard-mentor")
         } else if (selectedRole === "Co-Mentor") {
             router.push("/dashboard-comentor")
+        } else if (selectedRole === "Admin PSP") {
+            router.push("/dashboard-admin")
         } else {
             console.log("Selected Role:", selectedRole)
             alert(`Continuing as ${selectedRole}`)

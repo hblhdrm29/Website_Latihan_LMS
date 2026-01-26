@@ -22,7 +22,7 @@ import {
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 
-import { NotificationPopup } from "@/components/dashboard/notification-popup"
+import { MentorNotificationPopup } from "@/components/dashboard/mentor-notification-popup"
 
 import logoBumn from "../../public/assets/Logo_BUMN.png"
 import logoPeruri from "../../public/assets/Logo_Peruri.png"
@@ -84,7 +84,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                             {showNotifications && (
                                 <>
                                     <div className="fixed inset-0 z-40" onClick={() => setShowNotifications(false)} />
-                                    <NotificationPopup />
+                                    <MentorNotificationPopup />
                                 </>
                             )}
                         </div>

@@ -1,49 +1,35 @@
-"use client"
+"use strict";
+"use client";
 
-import * as React from "react"
-import Link from "next/link"
-import Image from "next/image"
-import { usePathname } from "next/navigation"
-import {
-    LayoutDashboard,
-    BookOpen,
-    Users,
-    User,
-    LogOut,
-    Menu,
-    X,
-    Bell,
-    Home,
-    Lightbulb,
-    HelpCircle,
-    GraduationCap,
-    IdCard,
-    ChevronDown
-} from "lucide-react"
-import { cn } from "@/lib/utils"
+import * as React from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { Menu, Bell, ChevronDown, User, LogOut, Home, LayoutDashboard, Lightbulb } from "lucide-react";
+import { cn } from "@/lib/utils";
+import logoBumn from "../../public/assets/Logo_BUMN.png";
+import logoPeruri from "../../public/assets/Logo_Peruri.png";
+import { AdminSidebar } from "@/components/admin/admin-sidebar";
+import { AdminNotificationPopup } from "@/components/admin/admin-notification-popup";
 
-import { MentorNotificationPopup } from "@/components/dashboard/mentor-notification-popup"
-
-import logoBumn from "../../public/assets/Logo_BUMN.png"
-import logoPeruri from "../../public/assets/Logo_Peruri.png"
-
-export default function DashboardLayout({ children }: { children: React.ReactNode }) {
-    const [isSidebarOpen, setIsSidebarOpen] = React.useState(false)
-    const [showNotifications, setShowNotifications] = React.useState(false)
-    const [showRole, setShowRole] = React.useState(false)
+export default function AdminLayout({ children }: { children: React.ReactNode }) {
+    const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
+    const [showNotifications, setShowNotifications] = React.useState(false);
+    const [showRole, setShowRole] = React.useState(false);
 
     return (
         <div className="min-h-screen bg-gray-50 flex flex-col">
-            {/* Navbar */}
-            <header className="h-10 bg-blue-100 text-white flex items-center justify-between px-4 lg:px-6 shadow-md z-50 sticky top-0"
+            {/* Admin Navbar - Purple Theme, h-10 to match Employee Dashboard size */}
+            <header
+                className="h-10 bg-blue-100 text-white flex items-center justify-between px-4 lg:px-6 shadow-md z-50 sticky top-0"
                 style={{
-                    background: "linear-gradient(90deg, #2563EB 0%, #7E22CE 100%)"
+                    background: "linear-gradient(90deg, #2563EB 0%, #7E22CE 100%)" // Purple gradient
                 }}
             >
                 <div className="flex items-center gap-4">
                     <button className="lg:hidden" onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
                         <Menu className="h-6 w-6" />
                     </button>
+
                     <div className="flex items-center gap-3">
                         {/* Logos */}
                         <div className="h-8 w-auto relative flex items-center gap-2">
@@ -64,9 +50,11 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                             />
                         </div>
                     </div>
+
                 </div>
 
                 <div className="flex items-center gap-4">
+                    {/* Icons */}
                     <div className="flex items-center gap-3">
                         <div className="relative">
                             <button
@@ -78,20 +66,21 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                             >
                                 <Bell className="h-4 w-4" />
                                 <div className="absolute top-0 right-0 bg-red-500 text-white text-[8px] font-bold h-3 w-3 flex items-center justify-center rounded-full">
-                                    8
+                                    4
                                 </div>
                             </button>
                             {showNotifications && (
                                 <>
                                     <div className="fixed inset-0 z-40" onClick={() => setShowNotifications(false)} />
-                                    <MentorNotificationPopup />
+                                    <AdminNotificationPopup />
                                 </>
                             )}
                         </div>
-                        <Link href="/dashboard-comentor" className="h-8 w-8 flex items-center justify-center hover:bg-white/10 rounded-full border border-white/20 transition-all hidden md:flex">
+
+                        <Link href="/dashboard-admin" className="h-8 w-8 flex items-center justify-center hover:bg-white/10 rounded-full border border-white/20 transition-all hidden md:flex">
                             <Home className="h-4 w-4" />
                         </Link>
-                        <Link href="/dashboard-comentor" className="h-8 w-8 flex items-center justify-center hover:bg-white/10 rounded-full border border-white/20 transition-all hidden md:flex">
+                        <Link href="/dashboard-admin" className="h-8 w-8 flex items-center justify-center hover:bg-white/10 rounded-full border border-white/20 transition-all hidden md:flex">
                             <LayoutDashboard className="h-4 w-4" />
                         </Link>
                         <button className="h-8 w-8 flex items-center justify-center hover:bg-white/10 rounded-full border border-white/20 transition-all hidden md:flex">
@@ -119,7 +108,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                                 <div className="text-left hidden sm:block leading-tight">
                                     <p className="text-[9px] font-bold text-white uppercase tracking-wider">Santika Tri Hapsari S</p>
                                 </div>
-                                <ChevronDown className={cn("h-3 w-3 text-white/70 transition-transform", showRole && "rotate-180")} />
+                                <ChevronDown className={cn("h-3 w-3 text-white transition-transform", showRole && "rotate-180")} />
                             </button>
 
                             {showRole && (
@@ -128,12 +117,12 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                                         <p className="text-[10px] font-bold text-gray-500 uppercase tracking-wider">Switch Role</p>
                                     </div>
                                     <div className="p-1.5 space-y-1">
-                                        <div className="flex items-center gap-2 bg-purple-50 p-2 rounded-lg border border-purple-100 cursor-pointer">
-                                            <div className="h-7 w-7 bg-purple-100 rounded-full flex items-center justify-center text-purple-600 shrink-0">
-                                                <GraduationCap className="h-3.5 w-3.5" />
+                                        <div className="flex items-center gap-2 bg-blue-50 p-2 rounded-lg border border-blue-100 cursor-pointer">
+                                            <div className="h-7 w-7 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 shrink-0">
+                                                <User className="h-3.5 w-3.5" />
                                             </div>
                                             <div className="flex-1">
-                                                <p className="text-xs font-bold text-gray-900 leading-none mb-0.5">Co-Mentor</p>
+                                                <p className="text-xs font-bold text-gray-900 leading-none mb-0.5">Admin PSP</p>
                                                 <p className="text-[9px] text-green-600 font-medium leading-none flex items-center gap-1">
                                                     <span className="h-1.5 w-1.5 rounded-full bg-green-500"></span>
                                                     Active Currently
@@ -143,10 +132,10 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
                                         <div className="flex items-center gap-2 hover:bg-gray-50 p-2 rounded-lg border border-transparent hover:border-gray-100 transition-colors cursor-pointer opacity-50">
                                             <div className="h-7 w-7 bg-gray-100 rounded-full flex items-center justify-center text-gray-500 shrink-0">
-                                                <GraduationCap className="h-3.5 w-3.5" />
+                                                <User className="h-3.5 w-3.5" />
                                             </div>
                                             <div className="flex-1">
-                                                <p className="text-xs font-bold text-gray-600 leading-none mb-0.5">Mentor</p>
+                                                <p className="text-xs font-bold text-gray-600 leading-none mb-0.5">Karyawan</p>
                                                 <p className="text-[9px] text-gray-400 font-medium leading-none">Not Available</p>
                                             </div>
                                         </div>
@@ -156,7 +145,17 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                                                 <User className="h-3.5 w-3.5" />
                                             </div>
                                             <div className="flex-1">
-                                                <p className="text-xs font-bold text-gray-600 leading-none mb-0.5">Karyawan</p>
+                                                <p className="text-xs font-bold text-gray-600 leading-none mb-0.5">Co-Mentor</p>
+                                                <p className="text-[9px] text-gray-400 font-medium leading-none">Not Available</p>
+                                            </div>
+                                        </div>
+
+                                        <div className="flex items-center gap-2 hover:bg-gray-50 p-2 rounded-lg border border-transparent hover:border-gray-100 transition-colors cursor-pointer opacity-50">
+                                            <div className="h-7 w-7 bg-gray-100 rounded-full flex items-center justify-center text-gray-500 shrink-0">
+                                                <User className="h-3.5 w-3.5" />
+                                            </div>
+                                            <div className="flex-1">
+                                                <p className="text-xs font-bold text-gray-600 leading-none mb-0.5">Mentor</p>
                                                 <p className="text-[9px] text-gray-400 font-medium leading-none">Not Available</p>
                                             </div>
                                         </div>
@@ -172,37 +171,13 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                             )}
                         </div>
                     </div>
-
-
                 </div>
-
-            </header >
+            </header>
 
             <div className="flex flex-1 relative">
-                {/* Sidebar */}
-                <aside className={cn(
-                    "absolute lg:sticky lg:top-10 lg:h-[calc(100vh-2.5rem)] left-0 z-40 h-full w-56 bg-white border-r transform transition-transform duration-200 ease-in-out lg:translate-x-0 flex flex-col",
-                    isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-                )}>
-                    {/* Mobile Close Button */}
-                    <div className="lg:hidden p-4 flex justify-end">
-                        <button onClick={() => setIsSidebarOpen(false)}>
-                            <X className="h-6 w-6 text-gray-500" />
-                        </button>
-                    </div>
+                {/* Admin Sidebar Component - The source of truth for sidebar items */}
+                <AdminSidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
-                    <div className="flex-1 py-3 px-2 space-y-1 overflow-y-auto">
-                        <NavItem icon={LayoutDashboard} label="Dashboard" href="/dashboard-comentor" />
-                        <NavItem icon={BookOpen} label="My Classes" href="/dashboard-comentor/my-classes" />
-                        <NavItem icon={Users} label="List Mentee" href="/dashboard-comentor/list-mentee" />
-                    </div>
-
-                    <div className="border-t mt-auto p-2">
-                        <NavItem icon={User} label="Profile" href="/dashboard-comentor/profile" />
-                    </div>
-                </aside>
-
-                {/* Overlay for mobile sidebar */}
                 {isSidebarOpen && (
                     <div
                         className="fixed inset-0 bg-black/20 z-30 lg:hidden"
@@ -210,52 +185,10 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                     />
                 )}
 
-                {/* Main Content */}
                 <main className="flex-1 overflow-auto relative">
                     {children}
                 </main>
             </div>
         </div >
-    )
-}
-
-function NavItem({
-    icon: Icon,
-    label,
-    href,
-    active,
-    isSubItem,
-    small,
-    className,
-    disableHover
-}: {
-    icon?: any,
-    label: string,
-    href: string,
-    active?: boolean,
-    isSubItem?: boolean,
-    small?: boolean,
-    className?: string,
-    disableHover?: boolean
-}) {
-    const pathname = usePathname()
-    const isActive = active || (href === "/dashboard-comentor" ? pathname === "/dashboard-comentor" : pathname?.startsWith(href))
-
-    return (
-        <Link
-            href={href}
-            className={cn(
-                "flex items-center gap-3 px-3 py-2 rounded-lg text-gray-600 transition-colors",
-                !disableHover && "hover:bg-blue-50 hover:text-blue-600",
-                isActive && !disableHover && "bg-blue-50 text-blue-600 font-medium hover:bg-blue-100",
-                disableHover && "cursor-default",
-                isSubItem && "pl-9",
-                small && "text-[11px] py-1.5",
-                className
-            )}
-        >
-            {Icon && <Icon className={cn("h-5 w-5", isActive && !disableHover && "text-blue-600")} />}
-            <span className={cn("text-sm", small && "text-[12px]")}>{label}</span>
-        </Link>
-    )
+    );
 }

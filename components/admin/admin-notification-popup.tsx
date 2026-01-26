@@ -43,7 +43,7 @@ const notifications = [
     }
 ]
 
-export function NotificationPopup() {
+export function AdminNotificationPopup() {
     return (
         <div className="absolute top-full right-0 mt-2 w-[350px] bg-white rounded-xl shadow-xl border border-gray-100 z-[60] overflow-hidden animate-in fade-in zoom-in-95 duration-200 origin-top-right">
             <div className="p-3 flex items-center justify-between border-b border-gray-50 bg-gray-50/50">

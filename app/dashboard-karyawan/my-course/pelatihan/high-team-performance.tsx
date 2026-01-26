@@ -7,6 +7,7 @@ import { Calendar, ChevronRight, ChevronDown, CheckCircle2, Megaphone, FileText,
 import { cn } from "@/lib/utils"
 import { useState } from "react"
 import Link from "next/link"
+import { useSearchParams } from "next/navigation"
 
 interface SectionItem {
     id: string
@@ -43,6 +44,9 @@ export function HighTeamPerformance() {
             prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]
         )
     }
+
+    const searchParams = useSearchParams()
+    const activeSectionId = searchParams.get("section") || "announcement"
 
     const sections: Section[] = [
         {
@@ -186,9 +190,9 @@ export function HighTeamPerformance() {
         },
         {
             id: "posttest",
-            title: "Posttest",
+            title: "Post Test",
             items: [
-                { id: "posttest1", title: "Posttest High Team Performance", type: "quiz", status: "done" }
+                { id: "posttest1", title: "Post Test High Team Performance", type: "quiz", status: "done" }
             ]
         },
         {
@@ -200,14 +204,24 @@ export function HighTeamPerformance() {
         }
     ]
 
+    // Determine which section(s) to show based on searchParams
+    // If activeSectionId is invalid, we might default to showing all or just the first?
+    // Let's filter to just the active section
+    const displayedSections = sections.filter(s => s.id === activeSectionId)
+
+    // Also update expandedSections state to ensure the item is expanded if it has content,
+    // though the UI requirement "only announcement appears" implies we just show that SECTION.
+    // If "only announcement" appears, it means other sections are hidden.
+    // So we map over `displayedSections` instead of `sections`.
+
     const getIcon = (type: string) => {
         switch (type) {
-            case "video": return <PlayCircle className="h-4 w-4 text-blue-500" />;
-            case "file": return <FileText className="h-4 w-4 text-blue-500" />;
-            case "quiz": return <FileText className="h-4 w-4 text-blue-500" />;
-            case "assignment": return <FileText className="h-4 w-4 text-blue-500" />;
-            case "survey": return <FileText className="h-4 w-4 text-blue-500" />;
-            default: return <FileText className="h-4 w-4 text-gray-400" />;
+            case "video": return <PlayCircle className="h-5 w-5" />;
+            case "file": return <FileText className="h-5 w-5" />;
+            case "quiz": return <FileText className="h-5 w-5" />;
+            case "assignment": return <FileText className="h-5 w-5" />;
+            case "survey": return <FileText className="h-5 w-5" />;
+            default: return <FileText className="h-5 w-5" />;
         }
     }
 
@@ -215,9 +229,9 @@ export function HighTeamPerformance() {
         <div className="p-6 space-y-6 pb-20 select-none">
             {/* Breadcrumb */}
             <div className="flex items-center gap-2 text-xs text-gray-500 mb-2">
-                <span>Dashboard</span>
+                <Link href="/dashboard-karyawan" className="hover:text-blue-600 transition-colors">Dashboard</Link>
                 <ChevronRight className="h-3 w-3" />
-                <span>Course</span>
+                <Link href="/dashboard-karyawan/my-course" className="hover:text-blue-600 transition-colors">My Course</Link>
                 <ChevronRight className="h-3 w-3" />
                 <span className="font-semibold text-gray-900">HIGH TEAM PERFORMANCE</span>
             </div>
@@ -245,41 +259,45 @@ export function HighTeamPerformance() {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 {/* Left Column: The Journey */}
                 <div className="lg:col-span-2 space-y-6">
-                    <Card className="border-none shadow-sm bg-white min-h-[500px]">
+                    <Card className="border border-gray-200 shadow-sm bg-white min-h-[500px]">
                         <CardContent className="p-6">
-                            <div className="flex items-center justify-between mb-8">
-                                <div className="flex items-center gap-2">
-                                    <div className="p-1.5 bg-blue-50 text-blue-600 rounded-md">
-                                        <Map className="h-4 w-4" />
-                                    </div>
-                                    <h2 className="text-lg font-bold text-gray-900">The Journey</h2>
+                            <div
+                                className="-mx-6 -mt-6 p-4 mb-6 flex items-center gap-3 border-b border-blue-700/20"
+                                style={{
+                                    background: "linear-gradient(90deg, #2563EB 0%, #7E22CE 100%)"
+                                }}
+                            >
+                                <div className="p-1.5 bg-white/20 text-white rounded-md">
+                                    <Map className="h-4 w-4" />
                                 </div>
+                                <h2 className="text-lg font-bold text-white">The Journey</h2>
                             </div>
 
                             {/* Accordion List */}
                             <div className="space-y-4">
-                                {sections.map((section) => {
-                                    const isExpanded = expandedSections.includes(section.id)
+                                {displayedSections.map((section) => {
+                                    // For single view, we usually want it expanded by default
+                                    // We can ignore the toggle logic for the outer container and just show the 'body'
+                                    const isExpanded = true // Always expanded in single view mode
 
                                     return (
                                         <div key={section.id} className="overflow-hidden rounded-xl shadow-sm border border-gray-100">
                                             {/* Header */}
                                             <div
-                                                className="flex items-center justify-between p-4 bg-[#1a00b3] text-white cursor-pointer hover:bg-[#150090] transition-colors"
+                                                className="flex items-center py-4 px-4 cursor-pointer hover:bg-gray-50/50 transition-colors group"
                                                 onClick={() => toggleSection(section.id)}
                                             >
-                                                <div className="flex items-center gap-4 w-full">
-                                                    <h3 className="font-bold text-base">{section.title}</h3>
+                                                <div className="flex items-center gap-4 w-full overflow-hidden">
+                                                    <h3 className="font-semibold text-base text-gray-900 group-hover:text-blue-600 transition-colors truncate">{section.title}</h3>
                                                     {section.id === "announcement" && (
-                                                        <div className="flex-1 flex items-center justify-end gap-3 mr-4">
-                                                            <div className="h-2 w-24 md:w-32 bg-indigo-700/50 rounded-full overflow-hidden">
-                                                                <div className="h-full bg-pink-400 w-full" />
+                                                        <div className="flex-1 flex items-center justify-end gap-3 shrink-0 ml-auto">
+                                                            <div className="h-1.5 w-24 md:w-32 bg-gray-100 rounded-full overflow-hidden">
+                                                                <div className="h-full bg-blue-600 w-full" />
                                                             </div>
-                                                            <span className="text-sm font-bold">100%</span>
+                                                            <span className="text-xs font-medium text-gray-500">100%</span>
                                                         </div>
                                                     )}
                                                 </div>
-                                                <ChevronDown className={cn("h-5 w-5 text-white/70 transition-transform duration-200", isExpanded ? "rotate-180" : "")} />
                                             </div>
 
                                             {/* Body */}
@@ -308,8 +326,14 @@ export function HighTeamPerformance() {
                                                                             onClick={() => item.content && toggleItem(item.id)}
                                                                         >
                                                                             <div className="flex items-center gap-3">
-                                                                                {getIcon(item.type)}
-                                                                                <span className="text-sm font-bold text-blue-700">{item.title}</span>
+                                                                                <div className="text-blue-600 shrink-0">
+                                                                                    {getIcon(item.type)}
+                                                                                </div>
+                                                                                <span className={cn(
+                                                                                    "text-sm font-bold truncate transition-colors text-blue-700"
+                                                                                )}>
+                                                                                    {item.title}
+                                                                                </span>
                                                                             </div>
                                                                             {item.status === "done" && (
                                                                                 <Badge className="bg-emerald-100 text-emerald-600 hover:bg-emerald-100 border-none px-2 py-0.5 text-[10px] font-bold gap-1 rounded-full">

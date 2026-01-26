@@ -25,15 +25,22 @@ import {
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 
-import { NotificationPopup } from "@/components/dashboard/notification-popup"
+import { KaryawanNotificationPopup } from "@/components/dashboard/karyawan-notification-popup"
 import logoBumn from "../../public/assets/Logo_BUMN.png"
 import logoPeruri from "../../public/assets/Logo_Peruri.png"
 import { HelpCenter } from "@/components/dashboard/help-center"
+
+import { CourseSidebar } from "@/components/dashboard/course-sidebar"
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
     const [isSidebarOpen, setIsSidebarOpen] = React.useState(false)
     const [showNotifications, setShowNotifications] = React.useState(false)
     const [showRole, setShowRole] = React.useState(false)
+    const pathname = usePathname()
+
+    // Check if we are in the specific course page where sidebar should change
+    // Based on file structure, page.tsx is in `pelatihan` folder
+    const isHighTeamPerformancePage = pathname?.includes("/my-course/pelatihan")
 
     return (
         <div className="min-h-screen bg-gray-50 flex flex-col">
@@ -87,7 +94,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                             {showNotifications && (
                                 <>
                                     <div className="fixed inset-0 z-40" onClick={() => setShowNotifications(false)} />
-                                    <NotificationPopup />
+                                    <KaryawanNotificationPopup />
                                 </>
                             )}
                         </div>
@@ -194,37 +201,43 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                         </button>
                     </div>
 
-                    <div className="flex-1 py-3 px-2 space-y-1 overflow-y-auto">
-                        <NavItem icon={LayoutDashboard} label="Dashboard" href="/dashboard-karyawan" />
-                        <NavItem icon={BookOpen} label="My Course" href="/dashboard-karyawan/my-course" />
+                    {isHighTeamPerformancePage ? (
+                        <CourseSidebar />
+                    ) : (
+                        <div className="flex-1 py-3 px-2 space-y-1 overflow-y-auto">
+                            <NavItem icon={LayoutDashboard} label="Dashboard" href="/dashboard-karyawan" />
+                            <NavItem icon={BookOpen} label="My Course" href="/dashboard-karyawan/my-course" />
 
-                        <NavGroup icon={GraduationCap} label="Course" href="/dashboard-karyawan/course" matchPath="/dashboard-karyawan/course">
-                            <div className="pl-9 mt-1 mb-3">
-                                <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">Pelatihan Wajib</p>
-                                <div className="space-y-1 border-l border-gray-100 pl-2">
-                                    <NavItem label="PKPM" href="#" small disableHover />
-                                    <NavItem label="xxxxx" href="#" small disableHover />
-                                    <NavItem label="xxxx" href="#" small disableHover />
-                                    <NavItem label="xxxxx" href="#" small disableHover />
-                                    <NavItem label="More..." href="/dashboard-karyawan/course" small disableHover />
+                            <NavGroup icon={GraduationCap} label="Course" href="/dashboard-karyawan/course" matchPath="/dashboard-karyawan/course">
+                                <div className="pl-9 mt-1 mb-3">
+                                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">Pelatihan Wajib</p>
+                                    <div className="space-y-1 border-l border-gray-100 pl-2">
+                                        <NavItem label="High Team Performance" href="/dashboard-karyawan/my-course/pelatihan" small />
+                                        <NavItem label="xxxxx" href="#" small disableHover />
+                                        <NavItem label="xxxx" href="#" small disableHover />
+                                        <NavItem label="xxxxx" href="#" small disableHover />
+                                        <NavItem label="More..." href="/dashboard-karyawan/course" small disableHover />
+                                    </div>
                                 </div>
-                            </div>
-                            {/* TDP Sub-Section */}
-                            <div className="pl-9 mt-1">
-                                <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">TDP</p>
-                                <div className="space-y-1 border-l border-gray-100 pl-2">
-                                    <NavItem label="TDP Kaun" href="#" small disableHover />
-                                    <NavItem label="TDP Kasek" href="#" small disableHover />
-                                    <NavItem label="TDP Kadep" href="#" small disableHover />
-                                    <NavItem label="More..." href="#" small disableHover />
+                                {/* TDP Sub-Section */}
+                                <div className="pl-9 mt-1">
+                                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">TDP</p>
+                                    <div className="space-y-1 border-l border-gray-100 pl-2">
+                                        <NavItem label="TDP Kaun" href="#" small disableHover />
+                                        <NavItem label="TDP Kasek" href="#" small disableHover />
+                                        <NavItem label="TDP Kadep" href="#" small disableHover />
+                                        <NavItem label="More..." href="#" small disableHover />
+                                    </div>
                                 </div>
-                            </div>
-                        </NavGroup>
-                    </div>
+                            </NavGroup>
+                        </div>
+                    )}
 
-                    <div className="border-t mt-auto p-2">
-                        <NavItem icon={User} label="Profile" href="/dashboard-karyawan/profile" />
-                    </div>
+                    {!isHighTeamPerformancePage && (
+                        <div className="border-t mt-auto p-2">
+                            <NavItem icon={User} label="Profile" href="/dashboard-karyawan/profile" />
+                        </div>
+                    )}
                 </aside>
 
                 {/* Overlay for mobile sidebar */}

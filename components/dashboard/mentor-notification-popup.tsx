@@ -2,18 +2,10 @@
 
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { User, Users, GraduationCap, Briefcase } from "lucide-react"
+import { Briefcase, User } from "lucide-react"
 
+// Specific notifications for Mentor and Co-Mentor (Onboarding & Admin PSP)
 const notifications = [
-    {
-        id: 1,
-        category: "Karyawan",
-        title: "New Employee Registered",
-        message: "Sarah Jenkins has joined as a Senior Developer.",
-        time: "10 mins ago",
-        icon: User,
-        color: "bg-blue-100 text-blue-600"
-    },
     {
         id: 2,
         category: "Onboarding",
@@ -24,26 +16,35 @@ const notifications = [
         color: "bg-green-100 text-green-600"
     },
     {
-        id: 3,
-        category: "Mentor",
-        title: "Mentor Session Scheduled",
-        message: "Dr. Budi Santoso scheduled a new mentoring session.",
-        time: "5 hours ago",
-        icon: GraduationCap,
-        color: "bg-purple-100 text-purple-600"
+        id: 7,
+        category: "Admin PSP",
+        title: "System Maintenance",
+        message: "Scheduled maintenance tonight at 23:00 WIB.",
+        time: "3 hours ago",
+        icon: User,
+        color: "bg-blue-100 text-blue-600"
     },
     {
-        id: 4,
-        category: "Co-Mentor",
-        title: "Co-Mentor Assigned",
-        message: "Rina Wati assigned as Co-Mentor for Class A.",
+        id: 5,
+        category: "Onboarding",
+        title: "New Batch Enrollment",
+        message: "Registration for Batch IV Onboarding is now open.",
         time: "1 day ago",
-        icon: Users,
-        color: "bg-orange-100 text-orange-600"
+        icon: Briefcase,
+        color: "bg-green-100 text-green-600"
+    },
+    {
+        id: 6,
+        category: "Onboarding",
+        title: "Assessment Review",
+        message: "Pending assessments for Batch III need review.",
+        time: "2 days ago",
+        icon: Briefcase,
+        color: "bg-green-100 text-green-600"
     }
 ]
 
-export function NotificationPopup() {
+export function MentorNotificationPopup() {
     return (
         <div className="absolute top-full right-0 mt-2 w-[350px] bg-white rounded-xl shadow-xl border border-gray-100 z-[60] overflow-hidden animate-in fade-in zoom-in-95 duration-200 origin-top-right">
             <div className="p-3 flex items-center justify-between border-b border-gray-50 bg-gray-50/50">

@@ -2,27 +2,10 @@
 
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { User, Users, GraduationCap, Briefcase } from "lucide-react"
+import { Users, GraduationCap, User } from "lucide-react"
 
+// Specific notifications for Onboarding (Mentor, Co-Mentor, & Admin PSP)
 const notifications = [
-    {
-        id: 1,
-        category: "Karyawan",
-        title: "New Employee Registered",
-        message: "Sarah Jenkins has joined as a Senior Developer.",
-        time: "10 mins ago",
-        icon: User,
-        color: "bg-blue-100 text-blue-600"
-    },
-    {
-        id: 2,
-        category: "Onboarding",
-        title: "Onboarding Status Update",
-        message: "Batch 2024 Onboarding progress is now at 85%.",
-        time: "2 hours ago",
-        icon: Briefcase,
-        color: "bg-green-100 text-green-600"
-    },
     {
         id: 3,
         category: "Mentor",
@@ -31,6 +14,15 @@ const notifications = [
         time: "5 hours ago",
         icon: GraduationCap,
         color: "bg-purple-100 text-purple-600"
+    },
+    {
+        id: 7,
+        category: "Admin PSP",
+        title: "System Maintenance",
+        message: "Scheduled maintenance tonight at 23:00 WIB.",
+        time: "3 hours ago",
+        icon: User,
+        color: "bg-blue-100 text-blue-600"
     },
     {
         id: 4,
@@ -43,7 +35,7 @@ const notifications = [
     }
 ]
 
-export function NotificationPopup() {
+export function OnboardingNotificationPopup() {
     return (
         <div className="absolute top-full right-0 mt-2 w-[350px] bg-white rounded-xl shadow-xl border border-gray-100 z-[60] overflow-hidden animate-in fade-in zoom-in-95 duration-200 origin-top-right">
             <div className="p-3 flex items-center justify-between border-b border-gray-50 bg-gray-50/50">
