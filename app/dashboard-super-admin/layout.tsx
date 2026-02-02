@@ -130,6 +130,7 @@ export default function SuperAdminLayout({ children }: { children: React.ReactNo
                                     </div>
                                     <div className="p-1.5 space-y-1">
 
+                                        {/* 1. ACITVE: Super Admin */}
                                         <div className="flex items-center gap-2 bg-indigo-50 p-2 rounded-lg border border-indigo-100">
                                             <div className="h-7 w-7 bg-indigo-100 rounded-full flex items-center justify-center text-indigo-600 shrink-0">
                                                 <Shield className="h-3.5 w-3.5" />
@@ -143,6 +144,7 @@ export default function SuperAdminLayout({ children }: { children: React.ReactNo
                                             </div>
                                         </div>
 
+                                        {/* 2. Admin PSP */}
                                         <Link href="/dashboard-admin" className="flex items-center gap-2 hover:bg-gray-50 p-2 rounded-lg border border-transparent hover:border-gray-100 transition-colors">
                                             <div className="h-7 w-7 bg-gray-100 rounded-full flex items-center justify-center text-gray-500 shrink-0">
                                                 <User className="h-3.5 w-3.5" />
@@ -153,16 +155,18 @@ export default function SuperAdminLayout({ children }: { children: React.ReactNo
                                             </div>
                                         </Link>
 
-                                        <Link href="/dashboard-karyawan" className="flex items-center gap-2 hover:bg-gray-50 p-2 rounded-lg border border-transparent hover:border-gray-100 transition-colors">
+                                        {/* 3. Mentor */}
+                                        <Link href="/dashboard-mentor" className="flex items-center gap-2 hover:bg-gray-50 p-2 rounded-lg border border-transparent hover:border-gray-100 transition-colors">
                                             <div className="h-7 w-7 bg-gray-100 rounded-full flex items-center justify-center text-gray-500 shrink-0">
-                                                <User className="h-3.5 w-3.5" />
+                                                <GraduationCap className="h-3.5 w-3.5" />
                                             </div>
                                             <div className="flex-1">
-                                                <p className="text-xs font-bold text-gray-600 leading-none mb-0.5">Karyawan</p>
+                                                <p className="text-xs font-bold text-gray-600 leading-none mb-0.5">Mentor</p>
                                                 <p className="text-[9px] text-gray-400 font-medium leading-none">Access Dashboard</p>
                                             </div>
                                         </Link>
 
+                                        {/* 4. Co-Mentor */}
                                         <Link href="/dashboard-comentor" className="flex items-center gap-2 hover:bg-gray-50 p-2 rounded-lg border border-transparent hover:border-gray-100 transition-colors">
                                             <div className="h-7 w-7 bg-gray-100 rounded-full flex items-center justify-center text-gray-500 shrink-0">
                                                 <GraduationCap className="h-3.5 w-3.5" />
@@ -173,12 +177,13 @@ export default function SuperAdminLayout({ children }: { children: React.ReactNo
                                             </div>
                                         </Link>
 
-                                        <Link href="/dashboard-mentor" className="flex items-center gap-2 hover:bg-gray-50 p-2 rounded-lg border border-transparent hover:border-gray-100 transition-colors">
+                                        {/* 5. Karyawan */}
+                                        <Link href="/dashboard-karyawan" className="flex items-center gap-2 hover:bg-gray-50 p-2 rounded-lg border border-transparent hover:border-gray-100 transition-colors">
                                             <div className="h-7 w-7 bg-gray-100 rounded-full flex items-center justify-center text-gray-500 shrink-0">
-                                                <GraduationCap className="h-3.5 w-3.5" />
+                                                <User className="h-3.5 w-3.5" />
                                             </div>
                                             <div className="flex-1">
-                                                <p className="text-xs font-bold text-gray-600 leading-none mb-0.5">Mentor</p>
+                                                <p className="text-xs font-bold text-gray-600 leading-none mb-0.5">Karyawan</p>
                                                 <p className="text-[9px] text-gray-400 font-medium leading-none">Access Dashboard</p>
                                             </div>
                                         </Link>
@@ -226,12 +231,7 @@ export default function SuperAdminLayout({ children }: { children: React.ReactNo
                             <NavItem icon={Users} label="User Management" href="/dashboard-super-admin/users" />
                         </div>
 
-                        {/* Config */}
-                        <div className="space-y-1">
-                            <p className="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">Configuration</p>
-                            <NavItem icon={Settings} label="System Settings" href="/dashboard-super-admin/settings" />
-                            <NavItem icon={FileText} label="Audit Logs" href="/dashboard-super-admin/logs" />
-                        </div>
+
 
                     </div>
 

@@ -141,16 +141,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                                         <p className="text-[10px] font-bold text-gray-500 uppercase tracking-wider">Switch Role</p>
                                     </div>
                                     <div className="p-1.5 space-y-1">
-                                        <Link href="/dashboard-admin" className="flex items-center gap-2 hover:bg-gray-50 p-2 rounded-lg border border-transparent hover:border-gray-100 transition-colors">
-                                            <div className="h-7 w-7 bg-gray-100 rounded-full flex items-center justify-center text-gray-500 shrink-0">
-                                                <User className="h-3.5 w-3.5" />
-                                            </div>
-                                            <div className="flex-1">
-                                                <p className="text-xs font-bold text-gray-600 leading-none mb-0.5">Admin PSP</p>
-                                                <p className="text-[9px] text-gray-400 font-medium leading-none">Access Dashboard</p>
-                                            </div>
-                                        </Link>
-
+                                        {/* 1. ACTIVE: Karyawan */}
                                         <div className="flex items-center gap-2 bg-blue-50 p-2 rounded-lg border border-blue-100">
                                             <div className="h-7 w-7 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 shrink-0">
                                                 <User className="h-3.5 w-3.5" />
@@ -164,16 +155,29 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                                             </div>
                                         </div>
 
-                                        <Link href="/dashboard-comentor" className="flex items-center gap-2 hover:bg-gray-50 p-2 rounded-lg border border-transparent hover:border-gray-100 transition-colors">
+                                        {/* 2. Super Admin */}
+                                        <Link href="/dashboard-super-admin" className="flex items-center gap-2 hover:bg-gray-50 p-2 rounded-lg border border-transparent hover:border-gray-100 transition-colors">
                                             <div className="h-7 w-7 bg-gray-100 rounded-full flex items-center justify-center text-gray-500 shrink-0">
-                                                <GraduationCap className="h-3.5 w-3.5" />
+                                                <Shield className="h-3.5 w-3.5" />
                                             </div>
                                             <div className="flex-1">
-                                                <p className="text-xs font-bold text-gray-600 leading-none mb-0.5">Co-Mentor</p>
+                                                <p className="text-xs font-bold text-gray-600 leading-none mb-0.5">Super Admin</p>
                                                 <p className="text-[9px] text-gray-400 font-medium leading-none">Access Dashboard</p>
                                             </div>
                                         </Link>
 
+                                        {/* 3. Admin PSP */}
+                                        <Link href="/dashboard-admin" className="flex items-center gap-2 hover:bg-gray-50 p-2 rounded-lg border border-transparent hover:border-gray-100 transition-colors">
+                                            <div className="h-7 w-7 bg-gray-100 rounded-full flex items-center justify-center text-gray-500 shrink-0">
+                                                <User className="h-3.5 w-3.5" />
+                                            </div>
+                                            <div className="flex-1">
+                                                <p className="text-xs font-bold text-gray-600 leading-none mb-0.5">Admin PSP</p>
+                                                <p className="text-[9px] text-gray-400 font-medium leading-none">Access Dashboard</p>
+                                            </div>
+                                        </Link>
+
+                                        {/* 4. Mentor */}
                                         <Link href="/dashboard-mentor" className="flex items-center gap-2 hover:bg-gray-50 p-2 rounded-lg border border-transparent hover:border-gray-100 transition-colors">
                                             <div className="h-7 w-7 bg-gray-100 rounded-full flex items-center justify-center text-gray-500 shrink-0">
                                                 <GraduationCap className="h-3.5 w-3.5" />
@@ -184,12 +188,13 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                                             </div>
                                         </Link>
 
-                                        <Link href="/dashboard-super-admin" className="flex items-center gap-2 hover:bg-gray-50 p-2 rounded-lg border border-transparent hover:border-gray-100 transition-colors">
+                                        {/* 5. Co-Mentor */}
+                                        <Link href="/dashboard-comentor" className="flex items-center gap-2 hover:bg-gray-50 p-2 rounded-lg border border-transparent hover:border-gray-100 transition-colors">
                                             <div className="h-7 w-7 bg-gray-100 rounded-full flex items-center justify-center text-gray-500 shrink-0">
-                                                <Shield className="h-3.5 w-3.5" />
+                                                <GraduationCap className="h-3.5 w-3.5" />
                                             </div>
                                             <div className="flex-1">
-                                                <p className="text-xs font-bold text-gray-600 leading-none mb-0.5">Super Admin</p>
+                                                <p className="text-xs font-bold text-gray-600 leading-none mb-0.5">Co-Mentor</p>
                                                 <p className="text-[9px] text-gray-400 font-medium leading-none">Access Dashboard</p>
                                             </div>
                                         </Link>
