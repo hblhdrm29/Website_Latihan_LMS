@@ -125,11 +125,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
                             {showRole && (
                                 <div className="absolute top-full mt-2 right-0 bg-white shadow-xl border border-gray-100 rounded-xl w-48 overflow-hidden z-50 animate-in fade-in slide-in-from-top-1">
-                                    <div className="bg-gray-50 px-3 py-2 border-b border-gray-100">
-                                        <p className="text-[10px] font-bold text-gray-500 uppercase tracking-wider">Switch Role</p>
-                                    </div>
-                                    <div className="p-1.5 space-y-1">
-                                        <div className="flex items-center gap-2 bg-blue-50 p-2 rounded-lg border border-blue-100 cursor-pointer">
+                                    <div className="p-1 space-y-1">
+                                        <div className="flex items-center gap-2 bg-blue-50 p-2 rounded-lg border border-blue-100">
                                             <div className="h-7 w-7 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 shrink-0">
                                                 <User className="h-3.5 w-3.5" />
                                             </div>
@@ -139,36 +136,6 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                                                     <span className="h-1.5 w-1.5 rounded-full bg-green-500"></span>
                                                     Active Currently
                                                 </p>
-                                            </div>
-                                        </div>
-
-                                        <div className="flex items-center gap-2 hover:bg-gray-50 p-2 rounded-lg border border-transparent hover:border-gray-100 transition-colors cursor-pointer opacity-50">
-                                            <div className="h-7 w-7 bg-gray-100 rounded-full flex items-center justify-center text-gray-500 shrink-0">
-                                                <User className="h-3.5 w-3.5" />
-                                            </div>
-                                            <div className="flex-1">
-                                                <p className="text-xs font-bold text-gray-600 leading-none mb-0.5">Karyawan</p>
-                                                <p className="text-[9px] text-gray-400 font-medium leading-none">Not Available</p>
-                                            </div>
-                                        </div>
-
-                                        <div className="flex items-center gap-2 hover:bg-gray-50 p-2 rounded-lg border border-transparent hover:border-gray-100 transition-colors cursor-pointer opacity-50">
-                                            <div className="h-7 w-7 bg-gray-100 rounded-full flex items-center justify-center text-gray-500 shrink-0">
-                                                <GraduationCap className="h-3.5 w-3.5" />
-                                            </div>
-                                            <div className="flex-1">
-                                                <p className="text-xs font-bold text-gray-600 leading-none mb-0.5">Mentor</p>
-                                                <p className="text-[9px] text-gray-400 font-medium leading-none">Not Available</p>
-                                            </div>
-                                        </div>
-
-                                        <div className="flex items-center gap-2 hover:bg-gray-50 p-2 rounded-lg border border-transparent hover:border-gray-100 transition-colors cursor-pointer opacity-50">
-                                            <div className="h-7 w-7 bg-gray-100 rounded-full flex items-center justify-center text-gray-500 shrink-0">
-                                                <GraduationCap className="h-3.5 w-3.5" />
-                                            </div>
-                                            <div className="flex-1">
-                                                <p className="text-xs font-bold text-gray-600 leading-none mb-0.5">Co-Mentor</p>
-                                                <p className="text-[9px] text-gray-400 font-medium leading-none">Not Available</p>
                                             </div>
                                         </div>
                                     </div>

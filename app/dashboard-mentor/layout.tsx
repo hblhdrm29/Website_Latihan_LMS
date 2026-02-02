@@ -8,6 +8,7 @@ import {
     LayoutDashboard,
     BookOpen,
     Users,
+    Shield,
     User,
     LogOut,
     Menu,
@@ -18,7 +19,8 @@ import {
     HelpCircle,
     GraduationCap,
     IdCard,
-    ChevronDown
+    ChevronDown,
+    RefreshCw
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -128,7 +130,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                                         <p className="text-[10px] font-bold text-gray-500 uppercase tracking-wider">Switch Role</p>
                                     </div>
                                     <div className="p-1.5 space-y-1">
-                                        <div className="flex items-center gap-2 bg-purple-50 p-2 rounded-lg border border-purple-100 cursor-pointer">
+                                        <div className="flex items-center gap-2 bg-purple-50 p-2 rounded-lg border border-purple-100">
                                             <div className="h-7 w-7 bg-purple-100 rounded-full flex items-center justify-center text-purple-600 shrink-0">
                                                 <GraduationCap className="h-3.5 w-3.5" />
                                             </div>
@@ -141,31 +143,51 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                                             </div>
                                         </div>
 
-                                        <div className="flex items-center gap-2 hover:bg-gray-50 p-2 rounded-lg border border-transparent hover:border-gray-100 transition-colors cursor-pointer opacity-50">
+                                        <Link href="/dashboard-comentor" className="flex items-center gap-2 hover:bg-gray-50 p-2 rounded-lg border border-transparent hover:border-gray-100 transition-colors">
                                             <div className="h-7 w-7 bg-gray-100 rounded-full flex items-center justify-center text-gray-500 shrink-0">
                                                 <GraduationCap className="h-3.5 w-3.5" />
                                             </div>
                                             <div className="flex-1">
                                                 <p className="text-xs font-bold text-gray-600 leading-none mb-0.5">Co-Mentor</p>
-                                                <p className="text-[9px] text-gray-400 font-medium leading-none">Not Available</p>
+                                                <p className="text-[9px] text-gray-400 font-medium leading-none">Access Dashboard</p>
                                             </div>
-                                        </div>
+                                        </Link>
 
-                                        <div className="flex items-center gap-2 hover:bg-gray-50 p-2 rounded-lg border border-transparent hover:border-gray-100 transition-colors cursor-pointer opacity-50">
+                                        <Link href="/dashboard-admin" className="flex items-center gap-2 hover:bg-gray-50 p-2 rounded-lg border border-transparent hover:border-gray-100 transition-colors">
+                                            <div className="h-7 w-7 bg-gray-100 rounded-full flex items-center justify-center text-gray-500 shrink-0">
+                                                <User className="h-3.5 w-3.5" />
+                                            </div>
+                                            <div className="flex-1">
+                                                <p className="text-xs font-bold text-gray-600 leading-none mb-0.5">Admin PSP</p>
+                                                <p className="text-[9px] text-gray-400 font-medium leading-none">Access Dashboard</p>
+                                            </div>
+                                        </Link>
+
+                                        <Link href="/dashboard-karyawan" className="flex items-center gap-2 hover:bg-gray-50 p-2 rounded-lg border border-transparent hover:border-gray-100 transition-colors">
                                             <div className="h-7 w-7 bg-gray-100 rounded-full flex items-center justify-center text-gray-500 shrink-0">
                                                 <User className="h-3.5 w-3.5" />
                                             </div>
                                             <div className="flex-1">
                                                 <p className="text-xs font-bold text-gray-600 leading-none mb-0.5">Karyawan</p>
-                                                <p className="text-[9px] text-gray-400 font-medium leading-none">Not Available</p>
+                                                <p className="text-[9px] text-gray-400 font-medium leading-none">Access Dashboard</p>
                                             </div>
-                                        </div>
+                                        </Link>
+
+                                        <Link href="/dashboard-super-admin" className="flex items-center gap-2 hover:bg-gray-50 p-2 rounded-lg border border-transparent hover:border-gray-100 transition-colors">
+                                            <div className="h-7 w-7 bg-gray-100 rounded-full flex items-center justify-center text-gray-500 shrink-0">
+                                                <Shield className="h-3.5 w-3.5" />
+                                            </div>
+                                            <div className="flex-1">
+                                                <p className="text-xs font-bold text-gray-600 leading-none mb-0.5">Super Admin</p>
+                                                <p className="text-[9px] text-gray-400 font-medium leading-none">Access Dashboard</p>
+                                            </div>
+                                        </Link>
                                     </div>
 
                                     <div className="border-t border-gray-100 p-1.5">
-                                        <Link href="/select-role" className="flex items-center gap-2 hover:bg-red-50 p-2 rounded-lg text-red-600 hover:text-red-700 transition-colors">
-                                            <LogOut className="h-3.5 w-3.5" />
-                                            <span className="text-xs font-bold">Logout</span>
+                                        <Link href="/select-role" className="flex items-center gap-2 hover:bg-gray-50 p-2 rounded-lg text-gray-700 transition-colors">
+                                            <RefreshCw className="h-3.5 w-3.5" />
+                                            <span className="text-xs font-bold">Switch Role</span>
                                         </Link>
                                     </div>
                                 </div>
